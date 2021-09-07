@@ -1,0 +1,15 @@
+featured: true
+sourceText: ""
+handle: facebook-page-from-url
+title: Facebook Page ID from url
+tags:
+  - facebook
+  - social-media
+sourceUrl: null
+input: '[{"text":"http:\/\/www.facebook.com\/GAOGolf"},{"text":"http:\/\/www.facebook.com\/golfquebec?ref=ts&fref=ts"},{"text":"http:\/\/www.facebook.com\/pages\/Alberta-Golf\/144026188016"},{"text":"http:\/\/www.facebook.com\/pages\/AGP-du-Qu%C3%A9bec\/384893361542645"},{"text":"http:\/\/www.facebook.com\/pages\/Dartmouth-NS\/The-Nova-Scotia-Golf-Association\/64019542477"}]'
+regex: (((https?://)?(www\.)?facebook\.com/))?(.*/)?([a-zA-Z0-9.]*)($|\?.*)
+engines:
+  - java
+options: []
+detail: This is for isolating the page id (needed for calls to the Facebook API) from a url that a user could reasonable input.
+replacement: $6

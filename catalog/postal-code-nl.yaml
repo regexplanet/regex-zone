@@ -1,0 +1,16 @@
+featured: true
+sourceText: Wikipedia
+handle: netherlands-postal-code
+title: Postal Code (Netherlands, simple)
+tags:
+  - netherlands
+  - nl
+  - postal-code
+sourceUrl: http://en.wikipedia.org/wiki/Postal_codes_in_the_Netherlands
+input: '[{"text":"NL-1000 AP"},{"text":"1000 AP"},{"text":"1462 HR"},{"text":"1795 JX"},{"text":"2964 CT"},{"text":"1000AP"},{"text":"10025"}]'
+regex: (NL-)?(\d{4})\s*([A-Z]{2})
+engines:
+  - java
+options: []
+detail: null
+replacement: $2 $3

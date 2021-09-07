@@ -1,0 +1,18 @@
+featured: true
+sourceText: ""
+handle: hexcolor
+title: Hexadecimal Color Code
+tags:
+  - color
+  - html
+input: '[{"text":"#aabbcc"},{"text":"#123456"},{"text":"#a1a1a1"},{"text":"a1a1a1"},{"text":"#111"}]'
+regex: ^(#([a-f0-9]{6}|[a-f0-9]{3}))$
+engines:
+  - dotnet
+  - java
+  - python
+  - ruby
+options:
+  - ignorecase
+detail: null
+replacement: $1

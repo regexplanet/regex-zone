@@ -1,0 +1,10 @@
+Dockerfile
+.dockerignore
+.editorconfig
+.git
+.github
+.gitignore
+*.md
+.next
+node_modules
+*.sh

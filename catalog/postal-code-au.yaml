@@ -1,0 +1,16 @@
+featured: true
+sourceText: Wikipedia
+handle: postal-code-au
+title: Postcode (Australia, simple)
+tags:
+  - au
+  - australia
+  - postal-code
+sourceUrl: http://en.wikipedia.org/wiki/Postcodes_in_Australia
+input: '[{"text":"1499"},{"text":"2026"},{"text":"2444"},{"text":"3193"},{"text":"2756"}]'
+regex: (\d{4})
+engines:
+  - java
+options: []
+detail: null
+replacement: $1

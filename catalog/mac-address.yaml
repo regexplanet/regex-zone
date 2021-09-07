@@ -1,0 +1,17 @@
+featured: true
+sourceText: ""
+handle: mac-address
+title: MAC Address
+tags:
+  - networking
+input: '[{"text":"1CC1DEFFBC90"},{"text":"1C:C1:DE:FF:BC:90"},{"text":"1cc1deffbc90"},{"text":"1c:c1:de:ff:bc:90"}]'
+regex: \b(([0-9a-fA-F]{2}[-:]??){5}([0-9a-fA-F]{2}))\b
+engines:
+  - dotnet
+  - java
+  - python
+options: []
+detail: |
+  Every ethernet adapter has a unique 48-bit address that is burned into its firmware.
+  For more details, see [MAC address](https://en.wikipedia.org/wiki/MAC_address#Notational_conventions) entry on Wikipedia
+replacement: "mac=$1"

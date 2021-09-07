@@ -1,0 +1,19 @@
+featured: true
+sourceText: ""
+handle: ipv4
+title: IPv4 Address (Accurate)
+tags:
+  - internet
+  - networking
+sourceUrl: null
+input: '[{"text":"192.168.1.1"},{"text":"10.10.10.10"},{"text":"255.255.255.1"},{"text":"256.1.1.1"},{"text":"1234.1.1.1"},{"text":"my ip address is 192.168.192.168."},{"text":"my ip address is 192.168.192.168 but your address is 10.10.10.1!"},{"text":"my ip address is 192.168.192.168 and my phone number is 888-555-1212"}]'
+regex: \b((25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3})\b
+engines:
+  - dotnet
+  - haskell
+  - java
+  - python
+  - ruby
+options: []
+detail: null
+replacement: $1

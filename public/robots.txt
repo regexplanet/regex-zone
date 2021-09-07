@@ -1,0 +1,5 @@
+#
+# robots.txt for regex.zone
+#
+
+# everything is indexable!

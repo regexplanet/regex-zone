@@ -1,0 +1,18 @@
+featured: true
+sourceText: ""
+handle: postal-code-us
+title: Zip code (United States)
+tags:
+  - postal-code
+  - united-states
+  - us
+sourceUrl: null
+input: '[{"text":"19087"},{"text":"19087-1544"},{"text":"10025"},{"text":"10025-1386"},{"text":"2012"},{"text":"1\/1\/2012"},{"text":"2012-01-01"},{"text":"20120101"}]'
+regex: \b((\d{5})(-\d{4})?)\b
+engines:
+  - java
+options: []
+detail: |
+  Postal codes (aka ZIP codes) in the United States consist of 5 digits with an optional 4 digit suffix.
+  For more details, see the [ZIP code](https://en.wikipedia.org/wiki/ZIP_Code) entry of Wikipedia.
+replacement: zip+4=$1 zip5=$2

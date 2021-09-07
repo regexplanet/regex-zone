@@ -1,0 +1,15 @@
+  featured: true
+  sourceText: ""
+  handle: twitter-url
+  title: Twitter Handle from URL
+  tags:
+    - social-media
+    - twitter
+  sourceUrl: null
+  input: '[{"text":"https:\/\/twitter.com\/example"},{"text":"https:\/\/twitter.com\/example\/alist"},{"text":"@example"},{"text":"http:\/\/www.twitter.com\/example\/alist"},{"text":"http:\/\/www.twitter.com\/example\/alist"},{"text":"example"},{"text":"@example\/alist"},{"text":"example\/alist"},{"text":"www.twitter.com\/example"},{"text":"www.twitter.com\/example\/list"},{"text":"https:\/\/twitter.com\/@example"},{"text":"https:\/\/twitter.com\/#!\/example"}]'
+  regex: ((https?://)?(www\.)?twitter\.com/)?(@|#!/)?([A-Za-z0-9_]{1,15})(/([-a-z]{1,20}))?
+  engines:
+    - java
+  options: []
+  detail: "Twitter handles can have up to 19 ASCII characters and underscore.\r\n\r\nTwitter list slugs can have up to 20 lowercase ASCII characters and dash."
+  replacement: user=$5 list=$7

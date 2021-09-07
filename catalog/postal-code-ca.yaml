@@ -1,0 +1,18 @@
+featured: true
+sourceText: ""
+handle: zipcode-ca
+title: Postal code (Canada)
+tags:
+  - ca
+  - canada
+  - postal-code
+sourceUrl: null
+input: '[{"text":"J0P 1Z0"},{"text":"K0A 2Z0"},{"text":"k0a 2z0"}]'
+regex: \b(?i)([ABCEGHJKLMNPRSTVXY]\d[A-Z]\s?\d[A-Z]\d)\b
+engines:
+  - java
+options: []
+detail: |
+  Postal codes in Canada consist of 5 digits with an optional 4 digit suffix.
+  For more details, see the [ZIP code](https://en.wikipedia.org/wiki/Postal_codes_in_Canada) entry of Wikipedia.
+replacement: postalcode=$1

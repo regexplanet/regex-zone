@@ -1,0 +1,17 @@
+featured: true
+sourceText: ""
+handle: visa
+title: Visa Credit Card
+tags:
+  - creditcard
+  - ecommerce
+sourceUrl: null
+input: '[{"text":"4111111111111111"},{"text":"4000000000000002"},{"text":"4484120000000029"},{"text":"4111113333333333"},{"text":"4111116666666666"},{"text":"4929000000006"},{"text":"4462000000000003"},{"text":"4917300000000008"},{"text":"4200000000000000"},{"text":"4018490000000039"}]'
+regex: \b(4[0-9]{12}(?:[0-9]{3})?)\b
+engines:
+  - dotnet
+  - java
+  - python
+options: []
+detail: Visa card numbers start with a "4" and are either 13 or 16 digits long
+replacement: visa=$1

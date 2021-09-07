@@ -1,0 +1,15 @@
+featured: true
+sourceText: Wikipedia
+handle: postal-code-uk
+title: Post code (UK, simple)
+tags:
+  - postal-code
+  - uk
+  - united-kingdom
+sourceUrl: http://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom
+input: '[{"text":"b288qp"},{"text":"CM9 6SR"},{"text":"B48 7ED"},{"text":"IV25 3LW"},{"text":"CH3 9DQ"}]'
+regex: (?i)([A-Z]{1,2}[0-9]{1,2}[A-Z]?)\s*([0-9][A-Z]{2})
+engines: []
+options: []
+detail: null
+replacement: $1 $2

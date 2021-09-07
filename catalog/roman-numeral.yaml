@@ -1,0 +1,14 @@
+featured: true
+sourceText: http://www.diveintopython.net/regular_expressions/n_m_syntax.html
+handle: roman-numeral
+title: Roman Numerals
+tags: []
+sourceUrl: Dive into Python
+input: '[{"text":"LIV"},{"text":"XXIX"}]'
+regex: \bM{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\b
+engines:
+  - java
+  - python
+options: []
+detail: null
+replacement: ""
