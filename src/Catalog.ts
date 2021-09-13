@@ -23,6 +23,7 @@ async function initialize() {
         parsed.filename = filename;
 
         cache.set(parsed.handle, parsed);
+        //LATER: validate w/JSON schema
         all.push(parsed);
     }
 }

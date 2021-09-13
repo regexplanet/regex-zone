@@ -13,6 +13,20 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
+ARG COMMIT="(not set)"
+ENV COMMIT=$COMMIT
+ARG LASTMOD="(not set)"
+ENV LASTMOD=$LASTMOD
+RUN echo '{"success":true,"message":"OK"}' \
+    | jq \
+      --arg COMMIT "${COMMIT}" \
+      --arg LASTMOD "${LASTMOD}" \
+      --arg TECH "$(npx next --version)" \
+      --compact-output \
+      --sort-keys \
+      '.commit=$COMMIT|.lastmod=$LASTMOD|.tech=$TECH' \
+      > /app/public/status.json
+
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
 WORKDIR /app

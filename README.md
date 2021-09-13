@@ -1,32 +1,31 @@
 # Regex Zone
 
+A catalog of useful regular expressions.
 
-## Basic Foundation
+## License
 
-- React on next.js
-- mimic Github UI w/primer-react
-- catalog stored in yaml files
-
-## MVP
-
-- [ ] catalog/template.yaml
-- [ ] regex's from [RegexPlanet Cookbook](https://www.regexplanet.com/cookbook/index.html)
-- [ ] /index.html
-- [ ] /catalog/index.html
-- [ ] /catalog/xxx/index.html
-- [ ] LICENSE.md
+[![Creative Commons Attribution-ShareAlike 4.0 International License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/)
+[Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/)
 
 ## To Do
 
+- [ ] /catalog/xxx/index.html
 - [ ] status.json
-- [ ] catalog/README.md
+- [ ] nodeping
+- [ ] logo/icon
+- [ ] switch to fully static (nginx)
 - [ ] CONTRIBUTING.md
 - [ ] /tag/index.html
 - [ ] /tag/xxx/index.html
 - [ ] /contact.html
 - [ ] comments via utteranc.es
-- [ ] search on home page
+- [ ] homepage: search
+- [ ] homepage: featured
+- [ ] homepage: latest
+- [ ] catalog/index: filter by tag
+- [ ] catalog/xxx/index: view source link
 - [ ] post to RegexPlanet
+- [ ] JSON schema for CatalogItem
 - [ ] CI for yaml validated via json schema
 - [ ] more regex in the catalog
 - [ ] post to places besides RXP

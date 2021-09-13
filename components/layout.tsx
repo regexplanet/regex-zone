@@ -18,7 +18,7 @@ const Layout:(x:any)=>JSX.Element  = ({ children, h1, home, title }) => {
     return (
         <>
             <Head>
-                <title>{h1 ? `${title} - ${siteTitle}` : title}</title>
+                <title>{h1 ? title : `${title} - ${siteTitle}`}</title>
             </Head>
             <Box minH="100vh" bg={mode('gray.50', 'gray.700')}>
             <Navbar>
@@ -39,12 +39,12 @@ const Layout:(x:any)=>JSX.Element  = ({ children, h1, home, title }) => {
                         </Link>
                     </NavLink>
                     <NavLink isActive={router.asPath.startsWith('/catalog')}>
-                        <Link href="/catalog">
+                        <Link href="/catalog/">
                             <a>Catalog</a>
                         </Link>
                     </NavLink>
                     <NavLink isActive={router.asPath.startsWith('/tags')}>
-                        <Link href="/tags">
+                        <Link href="/tags/">
                             <a>Tags</a>
                         </Link>
                     </NavLink>

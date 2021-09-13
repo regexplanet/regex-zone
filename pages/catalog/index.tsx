@@ -30,7 +30,7 @@ const CatalogIndex: NextPage = (props) => {
     for (const item of indexProps.catalogItems) {
         rows.push(
             <Tr key={item.handle}>
-                <Td><Link href={`/catalog/${item.handle}`}>{item.title}</Link></Td>
+                <Td><Link href={`/catalog/${item.handle}/`}>{item.title}</Link></Td>
             </Tr>
             );
     }
