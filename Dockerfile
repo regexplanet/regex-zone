@@ -13,6 +13,7 @@ COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
+RUN apk add --no-cache jq
 ARG COMMIT="(not set)"
 ENV COMMIT=$COMMIT
 ARG LASTMOD="(not set)"

@@ -35,17 +35,17 @@ const Layout:(x:any)=>JSX.Element  = ({ children, h1, home, title }) => {
                 <Navbar.Links>
                     <NavLink isActive={router.asPath == '/'}>
                         <Link href="/">
-                            <a>Home</a>
+                            <a>Home {router.asPath}</a>
                         </Link>
                     </NavLink>
                     <NavLink isActive={router.asPath.startsWith('/catalog')}>
-                        <Link href="/catalog/">
+                        <Link href="/catalog/" passHref>
                             <a>Catalog</a>
                         </Link>
                     </NavLink>
                     <NavLink isActive={router.asPath.startsWith('/tags')}>
-                        <Link href="/tags/">
-                            <a>Tags</a>
+                        <Link href="/tags/" passHref>
+                            <a>Tagsx</a>
                         </Link>
                     </NavLink>
                 </Navbar.Links>
@@ -58,6 +58,7 @@ const Layout:(x:any)=>JSX.Element  = ({ children, h1, home, title }) => {
                 maxWidth="960px"
                 px={2}
                 >
+
                 <Heading as="h1" my="1.5">{h1 ? h1 : title}</Heading>
                 {children}
             {!home && (
@@ -68,7 +69,7 @@ const Layout:(x:any)=>JSX.Element  = ({ children, h1, home, title }) => {
                 </div>
             )}
                 <Flex as="footer" justify="center" mt="3">
-                    <a href="https://github.com/regexplanet/www.regex.zone"><Img alt="Github" height="1.2rem" mx="2" src="https://www.vectorlogo.zone/logos/github/github-icon.svg"/></a>
+                    <a href="https://github.com/regexplanet/regex-zone"><Img alt="Github" height="1.2rem" mx="2" src="https://www.vectorlogo.zone/logos/github/github-icon.svg"/></a>
                     | <a href="https://twitter.com/RegexZone"><Img alt="Twitter" height="1.2rem" mx="2" src="https://www.vectorlogo.zone/logos/twitter/twitter-icon.svg"/></a>
                     | <a href="https://www.regexplanet.com/"><Img alt="RegexPlanet" height="1.2rem" mx="2" src="https://www.vectorlogo.zone/logos/regexplanet/regexplanet-icon.svg"/></a>
                     <Text>path={router.asPath}</Text>

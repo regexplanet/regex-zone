@@ -13,7 +13,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 
-import Layout from '../../components/layout'
+import Layout from '../../components/Layout'
 import * as Catalog from '../../src/Catalog';
 import { ReactNode } from 'react';
 
@@ -30,7 +30,9 @@ const CatalogIndex: NextPage = (props) => {
     for (const item of indexProps.catalogItems) {
         rows.push(
             <Tr key={item.handle}>
-                <Td><Link href={`/catalog/${item.handle}/`}>{item.title}</Link></Td>
+                <Td>
+                    <Link href={`/catalog/${item.handle}/`} prefetch={false}>{item.title}</Link>
+                </Td>
             </Tr>
             );
     }

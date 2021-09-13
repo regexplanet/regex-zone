@@ -7,7 +7,7 @@ import {
   import { GetStaticProps } from 'next'
   import type { NextPage } from 'next'
 
-import Layout from '../../../components/layout'
+import Layout from '../../../components/Layout'
 import * as Catalog from '../../../src/Catalog';
 import { ReactNode } from 'react';
 

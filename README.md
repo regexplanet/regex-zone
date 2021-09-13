@@ -1,5 +1,7 @@
 # Regex Zone
 
+[![build](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml)
+
 A catalog of useful regular expressions.
 
 ## License
@@ -10,7 +12,6 @@ A catalog of useful regular expressions.
 ## To Do
 
 - [ ] /catalog/xxx/index.html
-- [ ] status.json
 - [ ] nodeping
 - [ ] logo/icon
 - [ ] switch to fully static (nginx)
@@ -22,6 +23,7 @@ A catalog of useful regular expressions.
 - [ ] homepage: search
 - [ ] homepage: featured
 - [ ] homepage: latest
+- [ ] sitemap.xml
 - [ ] catalog/index: filter by tag
 - [ ] catalog/xxx/index: view source link
 - [ ] post to RegexPlanet
@@ -29,6 +31,7 @@ A catalog of useful regular expressions.
 - [ ] CI for yaml validated via json schema
 - [ ] more regex in the catalog
 - [ ] post to places besides RXP
+- [ ] 404 page
 
 ## Icon
 asterisk (from font or from FreeSerif)
