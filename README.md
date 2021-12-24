@@ -54,6 +54,10 @@ trident
 - OpenSans for body
 - Nimbus Mono for code
 
+- Jetbrains mono
+- roboto mono
+- b612-mono
+- DM Mono
 - Courier Prime
 
 https://en.wikipedia.org/wiki/Regular_expression
