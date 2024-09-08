@@ -6,7 +6,7 @@ import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
 export const meta: MetaFunction = () => {
   return [
     { title: "Regex Zone" },
-    { name: "description", content: "A library of useful regular expressions" },
+    { name: "description", content: "Useful regular expression resources" },
   ];
 };
 

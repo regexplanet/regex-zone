@@ -1,0 +1,16 @@
+detail: |
+  Postal codes (aka ZIP codes) in the United States consist of 5 digits with an optional 4 digit suffix.
+  For more details, see the [ZIP code](https://en.wikipedia.org/wiki/ZIP_Code) entry on Wikipedia.
+featured: true
+handle: zip-code
+title: Zip (aka Postal) Codes in the United States
+tags:
+  - postal-code
+  - united-states
+  - us
+  - usa
+variations:
+  - title: "US Zip Code (standalone)"
+    pattern: "^((\\d{5})(-\\d{4})?)$"
+  - title: "US Zip Code (inline)"
+    pattern: "\\b((\\d{5})(-\\d{4})?)\\b"

@@ -1,6 +1,7 @@
 import { Autocomplete, Group, Burger, rem, Anchor } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { PiMagnifyingGlass } from 'react-icons/pi';
+import { Link as RemixLink } from "@remix-run/react";
 
 import classes from './HeaderSearch.module.css';
 import RegexZoneSvg from '../Logos/RegexZoneSvg';
@@ -16,18 +17,13 @@ export function HeaderSearch() {
     const [opened, { toggle }] = useDisclosure(false);
 
     const items = links.map((link) => (
-        <a
+        <RemixLink
             key={link.label}
-            href={link.link}
+            to={link.link}
             className={classes.link}
-            onClick={(event) => {
-                if (!link.link.startsWith("https://")) {
-                    event.preventDefault()
-                }
-            }}
         >
             {link.label}
-        </a>
+        </RemixLink>
     ));
 
     return (

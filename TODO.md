@@ -16,3 +16,9 @@
 - [ ] more regex in the catalog
 - [ ] post to places besides RXP
 - [ ] 404 page
+
+## Fonts
+
+- Roboto Slab for headings
+- OpenSans for body
+- Nimbus Mono for code

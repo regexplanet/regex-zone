@@ -2,11 +2,11 @@
 
 [![build](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml)
 
-A catalog of useful regular expressions and related resources.
+A library of useful regular expressions and related resources.
 
 ## License
 
-CC BY-SA 4.0: [Overview](https://creativecommons.org/licenses/by-sa/4.0/), [legal text](LICENSE.txt)
+CC BY-SA 4.0: [Overview](https://creativecommons.org/licenses/by-sa/4.0/), [Full text](LICENSE.txt)
 
 ## Contributing
 
@@ -15,6 +15,7 @@ LATER
 ## Links
 
 - [Wikipedia:Regular_Expression](https://en.wikipedia.org/wiki/Regular_expression)
+- [Cheatography Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/)
 
 ## Other Libraries of Regex Patterns
 
@@ -41,16 +42,3 @@ LATER
 [![Remix](https://www.vectorlogo.zone/logos/remix/remix-ar21.svg)](https://remix.run/ "React Framework")
 [![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg)](https://www.typescriptlang.org/ "Programming Language")
 [![Vite](https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-ar21.svg)](https://vitejs.dev/ "Bundler")
-
-## Font
-
-- Roboto Slab
-- OpenSans for body
-- Nimbus Mono for code
-
-- Jetbrains mono
-- roboto mono
-- b612-mono
-- DM Mono
-- Courier Prime
-

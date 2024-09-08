@@ -1,0 +1,23 @@
+featured: true
+handle: css-color
+title: CSS Colors
+tags:
+  - color
+  - css
+  - html
+variations:
+  - title: "Hex (standalone)"
+    pattern: "^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$"
+    tests:
+      - text: "#f00"
+      - text: "#ff0000"
+      - text: "#0f0"
+      - text: "#00ff00"
+      - text: "#00f"
+      - text: "#0000ff"
+      - text: "#000"
+      - text: "#000000"
+      - text: "#fff"
+      - text: "#ffffff"
+  - title: "Hex (inline)"
+    pattern: "\\b(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\b"
