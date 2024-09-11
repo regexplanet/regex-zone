@@ -6,22 +6,33 @@ const LIBRARY_DIR = path.join(process.cwd(), "library");
 
 export type LibraryEntry = {
   title: string;
+  detail?: string; // markdown!
   handle: string;
   fullPath: string;
+  tags?: string[];
+  variations: LibraryEntryVariation[];
+};
+
+export type LibraryEntryVariation = {
+  title: string;
+  pattern: string;
+  description?: string;
 };
 
 const cache: Map<string, LibraryEntry> = new Map();
 const all: LibraryEntry[] = [];
 
 async function initialize() {
-    const fileNames = await fsPromises.readdir(LIBRARY_DIR);
+  if (all.length > 0) {
+    return;
+  }
+  const fileNames = await fsPromises.readdir(LIBRARY_DIR);
   for await (const fileName of fileNames) {
     const fullPath = path.join(LIBRARY_DIR, fileName);
     console.log(`filename=${fullPath}`);
 
     const raw = await fsPromises.readFile(fullPath, "utf-8");
     const parsed = yaml.load(raw, {
-      fullPath,
       schema: yaml.JSON_SCHEMA,
     }) as LibraryEntry;
     parsed.fullPath = fullPath;
@@ -33,21 +44,17 @@ async function initialize() {
 }
 
 function get(handle: string) {
-
   const entry = cache.get(handle);
 
   if (!entry) {
-    throw new Error(`Unknown catalog entry ${handle}`);
+    return null;
   }
 
   return entry;
 }
 
 function getAll(): LibraryEntry[] {
-
   return all;
 }
-
-initialize();
 
 export { get, getAll, initialize };

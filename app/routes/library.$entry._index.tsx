@@ -1,9 +1,22 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Text } from '@mantine/core';
+//import type { MetaFunction } from "@remix-run/node";
+//import { json } from "@remix-run/node";
+import { json, type MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
+//import type { LoaderFunctionArgs } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { Container, Table } from "react-bootstrap";
+import Markdown from 'react-markdown'
+import { Footer } from "~/components/Footer";
 
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { get, LibraryEntry } from "~/components/Library";
-import { useParams } from "@remix-run/react";
+import { get, initialize, LibraryEntry, LibraryEntryVariation } from "~/components/Library";
+import { TagList } from "~/components/TagList";
+
+export const loader = async ({
+    params,
+}: LoaderFunctionArgs) => {
+    await initialize();
+    return json(get(params["entry"] || ""));
+};
 
 
 export const meta: MetaFunction = () => {
@@ -13,16 +26,53 @@ export const meta: MetaFunction = () => {
     ];
 };
 
+function LibraryEntryView(entry: LibraryEntry) {
+    return (
+        <Container>
+
+            <div className="float-end mt-4">
+                {entry.tags ? TagList(entry.tags) : <i>(none)</i>}
+            </div>
+
+            <h1 className="py-2">{entry.title}</h1>
+
+            {entry.detail ? <Markdown>{entry.detail}</Markdown> : null}
+
+            <Table className="table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Variation</th>
+                        <th>Pattern</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {entry.variations.length > 0 ? (entry.variations.map((variation) => LibraryEntryVariationView(variation))) : <tr><td>(none)</td></tr>}
+                </tbody>
+            </Table>
+            <details><summary>Raw data</summary>
+                <pre>{JSON.stringify(entry, null, 4)}</pre>
+            </details>
+            <Footer />
+        </Container>
+    );
+}
+
+function LibraryEntryVariationView(variation: LibraryEntryVariation) {
+    return (
+        <tr>
+            <td>{variation.title}</td>
+            <td><code>{variation.pattern}</code></td>
+        </tr>
+    )
+}
+
 export default function Index() {
-
-    const params = useParams()
-
-    const entry:LibraryEntry = get(params.entry || "");
+    const entry = useLoaderData<typeof loader>();
 
     return (
         <>
             <HeaderSearch />
-            <Text>{JSON.stringify(entry)}</Text>
+            {entry ? LibraryEntryView(entry) : <h1>Not Found</h1>}
         </>
     );
 }

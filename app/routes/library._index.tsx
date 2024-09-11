@@ -1,9 +1,18 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Table } from '@mantine/core';
-import { Link as RemixLink } from "@remix-run/react";
+import { Badge, Container, Table } from 'react-bootstrap';
+import { Link as RemixLink, useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/node";
 
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { getAll, LibraryEntry } from "~/components/Library";
+import { getAll, initialize, LibraryEntry } from "~/components/Library";
+import { TagList } from "~/components/TagList";
+import { Footer } from "~/components/Footer";
+
+
+export const loader = async () => {
+    await initialize();
+    return json(getAll());
+};
 
 
 export const meta: MetaFunction = () => {
@@ -13,33 +22,47 @@ export const meta: MetaFunction = () => {
     ];
 };
 
-function LibraryEntryRow( entry: LibraryEntry ) {
+
+function LibraryEntryRow(entry: LibraryEntry) {
     return (
-        <Table.Tr key={entry.handle}>
-            <Table.Td>
+        <tr key={entry.handle}>
+            <td>
                 <RemixLink to={`${entry.handle}/`}>{entry.title}</RemixLink>
-            </Table.Td>
-        </Table.Tr>
+            </td>
+            <td style={{ 'textAlign': 'right' }}>
+                {entry.tags ? TagList(entry.tags) : null}
+                <Badge bg="secondary">{entry.variations.length}</Badge>
+            </td>
+        </tr>
     );
 }
 
 export default function Index() {
+    const entries = useLoaderData<typeof loader>();
 
-    const entries = getAll().map((entry) => LibraryEntryRow(entry));
+    const entryRows = entries.map((entry) => LibraryEntryRow(entry));
 
     return (
         <>
             <HeaderSearch />
-            <Table>
-                <Table.Thead>
-                    <Table.Tr>
-                        <Table.Th>Title</Table.Th>
-                    </Table.Tr>
-                </Table.Thead>
-                <Table.Tbody>
-                    {entries}
-                </Table.Tbody>
-            </Table>
+            <Container>
+                <h1 className="py-2">Pattern Library</h1>
+                <Table className="table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {entryRows}
+                    </tbody>
+                </Table>
+                <details><summary>Raw data</summary>
+                    <pre>{JSON.stringify(entries, null, 4)}</pre>
+                </details>
+                <Footer />
+            </Container>
         </>
     );
 }

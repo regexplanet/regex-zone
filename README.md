@@ -16,15 +16,19 @@ LATER
 
 - [Wikipedia:Regular_Expression](https://en.wikipedia.org/wiki/Regular_expression)
 - [Cheatography Cheat Sheet](https://cheatography.com/davechild/cheat-sheets/regular-expressions/)
+- [aloisdg/awesome-regex](https://github.com/aloisdg/awesome-regex)
+- [slevithan/awesome-regex](https://github.com/slevithan/awesome-regex)
 
-## Other Libraries of Regex Patterns
+## Other Collections of Regex Patterns
 
 - [GitLeaks](https://github.com/gitleaks/gitleaks/blob/master/config/gitleaks.toml)
 - [iHateRegex](https://github.com/geongeorge/i-hate-regex/tree/master/static/regex)
 - [mingrammer/commonregex](https://github.com/mingrammer/commonregex)
 - [pyWhat](https://github.com/bee-san/pyWhat/blob/main/pywhat/Data/regex.json)
+- [RegexDB](https://rgxdb.com/)
 - [RegexHub](https://projects.lukehaas.me/regexhub/)
 - [RegExLib](https://regexlib.com/Default.aspx)
+- [regexhq](https://github.com/orgs/regexhq/repositories)
 - [sindresorhus](https://github.com/sindresorhus?tab=repositories&q=regex&type=&language=&sort=)
 
 ## Credits
@@ -39,6 +43,6 @@ LATER
 [![npm](https://www.vectorlogo.zone/logos/npmjs/npmjs-ar21.svg)](https://www.npmjs.com/ "JS Package Management")
 [![Phosphor Icons](https://www.vectorlogo.zone/logos/phosphoricons/phosphoricons-ar21.svg)](https://phosphoricons.com/ "Toolbar icons")
 [![react.js](https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg)](https://reactjs.org/ "UI Framework")
-[![Remix](https://www.vectorlogo.zone/logos/remix/remix-ar21.svg)](https://remix.run/ "React Framework")
+[![Remix](https://www.vectorlogo.zone/logos/remixrun/remixrun-ar21.svg)](https://remix.run/ "React Framework")
 [![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg)](https://www.typescriptlang.org/ "Programming Language")
 [![Vite](https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-ar21.svg)](https://vitejs.dev/ "Bundler")

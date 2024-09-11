@@ -1,15 +1,25 @@
 'use client';
 
-import { Button, Group, useMantineColorScheme } from '@mantine/core';
+import { Button, ButtonGroup } from 'react-bootstrap';
+
+function setColorScheme(scheme: 'light' | 'dark' | 'auto') {
+  if (scheme == 'auto') {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      scheme = 'dark';
+    } else {
+      scheme = 'light';
+    }
+  }
+  document.documentElement.setAttribute('data-bs-theme', scheme);
+}
 
 export function ColorSchemeToggle() {
-  const { setColorScheme } = useMantineColorScheme();
 
   return (
-    <Group justify="center" mt="xl">
+    <ButtonGroup>
       <Button onClick={() => setColorScheme('light')}>Light</Button>
       <Button onClick={() => setColorScheme('dark')}>Dark</Button>
       <Button onClick={() => setColorScheme('auto')}>Auto</Button>
-    </Group>
+    </ButtonGroup>
   );
 }

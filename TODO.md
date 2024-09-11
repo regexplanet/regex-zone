@@ -1,15 +1,15 @@
 # To Do
 
-- [ ] /library/
-- [ ] /library/xxx/
-- [ ] nodeping
-- [ ] /tag/
-- [ ] /tag/xxx/
+- [ ] sitemap.xml
+- [ ] search.html
+- [ ] copy to clipboard for variations
+- [ ] test button for variations
 - [ ] comments via utteranc.es
 - [ ] homepage: search
 - [ ] homepage: featured
 - [ ] homepage: latest
-- [ ] sitemap.xml
+- [ ] notes for variations
+- [ ] tags for variations
 - [ ] post to RegexPlanet
 - [ ] JSON schema for library
 - [ ] CI for yaml validated via json schema
