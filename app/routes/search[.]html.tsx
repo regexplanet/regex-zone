@@ -1,8 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Welcome } from "~/components/Welcome/Welcome";
-import { ColorSchemeToggle } from "~/components/ColorSchemeToggle/ColorSchemeToggle";
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { Badge, Container, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { Footer } from "~/components/Footer";
 
 export const meta: MetaFunction = () => {

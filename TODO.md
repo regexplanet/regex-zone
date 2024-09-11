@@ -1,8 +1,7 @@
 # To Do
 
-- [ ] sitemap.xml
-- [ ] search.html
 - [ ] copy to clipboard for variations
+- [ ] search.html
 - [ ] test button for variations
 - [ ] comments via utteranc.es
 - [ ] homepage: search

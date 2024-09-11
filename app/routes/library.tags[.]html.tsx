@@ -1,5 +1,5 @@
 import { json, type MetaFunction, SerializeFrom } from "@remix-run/node";
-import { useLoaderData, useSearchParams } from "@remix-run/react";
+import { Link as RemixLink, useLoaderData, useSearchParams } from "@remix-run/react";
 import { Container } from "react-bootstrap";
 import { Footer } from "~/components/Footer";
 
@@ -47,7 +47,7 @@ function TagRow(tag:string, currentTag: string, entries: SerializeFrom<TagEntry>
             <ul className="mt-1">
                 {entries?.map((entry) => (
                     <li key={entry.url}>
-                        <a href={entry.url}>{entry.title}</a>
+                        <RemixLink to={entry.url}>{entry.title}</RemixLink>
                     </li>
                 ))}
             </ul>
