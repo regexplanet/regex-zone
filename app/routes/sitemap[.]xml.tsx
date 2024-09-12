@@ -16,7 +16,7 @@ export async function loader() {
     lines.push(urlLine('/library/tags.html'));
     lines.push(urlLine('/search.html'));
 
-    initialize();
+    await initialize();
     for (const entry of getAll()) {
         lines.push(urlLine(`/library/${entry.handle}/`));
     }

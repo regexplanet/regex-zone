@@ -1,5 +1,6 @@
 # To Do
 
+- [ ] library -> collection/pattern
 - [ ] copy to clipboard for variations
 - [ ] search.html
 - [ ] test button for variations
