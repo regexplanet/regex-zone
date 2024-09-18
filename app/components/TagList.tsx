@@ -6,7 +6,7 @@ export function TagList(tags: string[]) {
             {tags.map((tag) => (
                 <RemixLink
                     key={tag}
-                    to={`/library/tags.html?tag=${tag}`}
+                    to={`/patterns/tags.html?tag=${tag}`}
                     className="badge text-bg-primary text-decoration-none me-2"
                 >
                     {tag.replace('-', ' ')}

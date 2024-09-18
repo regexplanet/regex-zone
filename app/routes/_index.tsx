@@ -21,7 +21,7 @@ export default function Index() {
         <h1 className="py-2">
           Welcome to the Regex Zone
         </h1>
-        <div className="pb-3">Check out the <RemixLink to="/library/">Library</RemixLink> of useful patterns!</div>
+        <div className="pb-3">Check out the collection of useful <RemixLink to="/patterns/">Regular Expression Patterns</RemixLink>!</div>
         <ColorSchemeToggle />
         </Container>
         <Footer />

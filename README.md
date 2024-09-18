@@ -2,7 +2,7 @@
 
 [![build](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml/badge.svg)](https://github.com/regexplanet/regex-zone/actions/workflows/gcr-deploy.yaml)
 
-A library of useful regular expressions and related resources.
+A collection of useful regular expressions and related resources.
 
 ## License
 

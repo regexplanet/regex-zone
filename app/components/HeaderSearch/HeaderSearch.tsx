@@ -5,7 +5,7 @@ import { Container, Navbar } from 'react-bootstrap';
 import RegexZoneSvg from '../Logos/RegexZoneSvg';
 
 const links = [
-    { link: '/library/', label: 'Library' },
+    { link: '/patterns/', label: 'Patterns' },
     //{ link: '/docs/', label: 'Docs' },
     { link: 'https://www.regexplanet.com/', label: 'Testing' },
     //{ link: 'https://github.com/regexplanet/regex-zone/discussions', label: 'Community' },

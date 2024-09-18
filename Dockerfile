@@ -30,7 +30,7 @@ ENV NODE_ENV=production
 
 USER nonroot
 COPY --chown=nonroot:nonroot --from=base /usr/bin/dumb-init /usr/bin/dumb-init
-COPY --chown=nonroot:nonroot --from=builder /app/library /app/library
+COPY --chown=nonroot:nonroot --from=builder /app/patterns /app/patterns
 COPY --chown=nonroot:nonroot --from=builder /app/build /app/build
 COPY --chown=nonroot:nonroot --from=builder /app/node_modules /app/node_modules
 COPY --chown=nonroot:nonroot ./server.js /app/server.js

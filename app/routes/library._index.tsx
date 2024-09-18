@@ -17,8 +17,8 @@ export const loader = async () => {
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Library - Regex Zone" },
-        { name: "description", content: "A library of useful regular expressions" },
+        { title: "Patterns - Regex Zone" },
+        { name: "description", content: "A collection of useful regular expression patterns" },
     ];
 };
 

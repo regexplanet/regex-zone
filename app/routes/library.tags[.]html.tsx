@@ -19,7 +19,7 @@ export const loader = async () => {
     for (const entry of getAll()) {
         if (entry.tags) {
             for (const tag of entry.tags) {
-                const tagEntry = { title: entry.title, url: `/library/${entry.handle}/` };
+                const tagEntry = { title: entry.title, url: `/patterns/${entry.handle}/` };
                 const entries = tagMap[tag];
                 if (!entries) {
                     tagMap[tag] = [tagEntry];

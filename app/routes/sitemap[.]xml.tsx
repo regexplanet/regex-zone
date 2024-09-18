@@ -12,13 +12,13 @@ export async function loader() {
     lines.push('<?xml-stylesheet type="text/xsl" href="/sitemap.xslt" ?>');
     lines.push('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">');
     lines.push(urlLine('/'));
-    lines.push(urlLine('/library/'));
-    lines.push(urlLine('/library/tags.html'));
+    lines.push(urlLine('/patterns/'));
+    lines.push(urlLine('/patterns/tags.html'));
     lines.push(urlLine('/search.html'));
 
     await initialize();
     for (const entry of getAll()) {
-        lines.push(urlLine(`/library/${entry.handle}/`));
+        lines.push(urlLine(`/patterns/${entry.handle}/`));
     }
 
     lines.push('</urlset>')
