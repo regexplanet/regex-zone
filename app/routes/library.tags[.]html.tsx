@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { Footer } from "~/components/Footer";
 
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { getAll, initialize } from "~/components/Library";
+import { getAll, initialize } from "~/components/Patterns";
 
 type TagEntry = {
     title: string;

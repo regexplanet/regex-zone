@@ -8,7 +8,7 @@ import Markdown from 'react-markdown'
 import { Footer } from "~/components/Footer";
 
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { get, initialize, LibraryEntry, LibraryEntryVariation } from "~/components/Library";
+import { get, initialize, PatternEntry, PatternEntryVariation } from "~/components/Patterns";
 import { TagList } from "~/components/TagList";
 
 export const loader = async ({
@@ -26,7 +26,7 @@ export const meta: MetaFunction = () => {
     ];
 };
 
-function LibraryEntryView(entry: LibraryEntry) {
+function PatternEntryView(entry: PatternEntry) {
     return (
         <Container>
 
@@ -46,7 +46,7 @@ function LibraryEntryView(entry: LibraryEntry) {
                     </tr>
                 </thead>
                 <tbody>
-                    {entry.variations.length > 0 ? (entry.variations.map((variation) => LibraryEntryVariationView(variation))) : <tr><td>(none)</td></tr>}
+                    {entry.variations.length > 0 ? (entry.variations.map((variation) => PatternEntryVariationView(variation))) : <tr><td>(none)</td></tr>}
                 </tbody>
             </Table>
             <details><summary>Raw data</summary>
@@ -57,7 +57,7 @@ function LibraryEntryView(entry: LibraryEntry) {
     );
 }
 
-function LibraryEntryVariationView(variation: LibraryEntryVariation) {
+function PatternEntryVariationView(variation: PatternEntryVariation) {
     return (
         <tr>
             <td>{variation.title}</td>
@@ -72,7 +72,7 @@ export default function Index() {
     return (
         <>
             <HeaderSearch />
-            {entry ? LibraryEntryView(entry) : <h1>Not Found</h1>}
+            {entry ? PatternEntryView(entry) : <h1>Not Found</h1>}
         </>
     );
 }

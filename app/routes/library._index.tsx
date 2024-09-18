@@ -4,7 +4,7 @@ import { Link as RemixLink, useLoaderData } from "@remix-run/react";
 import { json } from "@remix-run/node";
 
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
-import { getAll, initialize, LibraryEntry } from "~/components/Library";
+import { getAll, initialize, PatternEntry } from "~/components/Patterns";
 import { TagList } from "~/components/TagList";
 import { Footer } from "~/components/Footer";
 
@@ -23,7 +23,7 @@ export const meta: MetaFunction = () => {
 };
 
 
-function LibraryEntryRow(entry: LibraryEntry) {
+function PatternEntryRow(entry: PatternEntry) {
     return (
         <tr key={entry.handle}>
             <td>
@@ -40,7 +40,7 @@ function LibraryEntryRow(entry: LibraryEntry) {
 export default function Index() {
     const entries = useLoaderData<typeof loader>();
 
-    const entryRows = entries.map((entry) => LibraryEntryRow(entry));
+    const entryRows = entries.map((entry) => PatternEntryRow(entry));
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { getAll, initialize } from "~/components/Library";
+import { getAll, initialize } from "~/components/Patterns";
 
 function urlLine(url:string) {
     return `\t<url><loc>https://www.regex.zone${url}</loc></url>`

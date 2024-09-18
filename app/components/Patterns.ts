@@ -4,23 +4,23 @@ import * as yaml from "js-yaml";
 
 const LIBRARY_DIR = path.join(process.cwd(), "library");
 
-export type LibraryEntry = {
+export type PatternEntry = {
   title: string;
   detail?: string; // markdown!
   handle: string;
   fullPath: string;
   tags?: string[];
-  variations: LibraryEntryVariation[];
+  variations: PatternEntryVariation[];
 };
 
-export type LibraryEntryVariation = {
+export type PatternEntryVariation = {
   title: string;
   pattern: string;
   description?: string;
 };
 
-const cache: Map<string, LibraryEntry> = new Map();
-const all: LibraryEntry[] = [];
+const cache: Map<string, PatternEntry> = new Map();
+const all: PatternEntry[] = [];
 
 async function initialize() {
   if (all.length > 0) {
@@ -34,7 +34,7 @@ async function initialize() {
     const raw = await fsPromises.readFile(fullPath, "utf-8");
     const parsed = yaml.load(raw, {
       schema: yaml.JSON_SCHEMA,
-    }) as LibraryEntry;
+    }) as PatternEntry;
     parsed.fullPath = fullPath;
 
     cache.set(parsed.handle, parsed);
@@ -53,7 +53,7 @@ function get(handle: string) {
   return entry;
 }
 
-function getAll(): LibraryEntry[] {
+function getAll(): PatternEntry[] {
   return all;
 }
 
