@@ -2,7 +2,7 @@ import * as fsPromises from "node:fs/promises";
 import * as path from "node:path";
 import * as yaml from "js-yaml";
 
-const LIBRARY_DIR = path.join(process.cwd(), "library");
+const PATTERN_DIR = path.join(process.cwd(), "patterns");
 
 export type PatternEntry = {
   title: string;
@@ -26,9 +26,9 @@ async function initialize() {
   if (all.length > 0) {
     return;
   }
-  const fileNames = await fsPromises.readdir(LIBRARY_DIR);
+  const fileNames = await fsPromises.readdir(PATTERN_DIR);
   for await (const fileName of fileNames) {
-    const fullPath = path.join(LIBRARY_DIR, fileName);
+    const fullPath = path.join(PATTERN_DIR, fileName);
     console.log(`filename=${fullPath}`);
 
     const raw = await fsPromises.readFile(fullPath, "utf-8");

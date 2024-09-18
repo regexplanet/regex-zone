@@ -46,7 +46,7 @@ export default function Index() {
         <>
             <HeaderSearch />
             <Container>
-                <h1 className="py-2">Pattern Library</h1>
+                <h1 className="py-2">Patterns</h1>
                 <Table className="table-striped table-hover">
                     <thead>
                         <tr>

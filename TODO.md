@@ -1,6 +1,5 @@
 # To Do
 
-- [ ] library -> collection/pattern
 - [ ] copy to clipboard for variations
 - [ ] search.html
 - [ ] test button for variations
@@ -11,7 +10,7 @@
 - [ ] notes for variations
 - [ ] tags for variations
 - [ ] post to RegexPlanet
-- [ ] JSON schema for library
+- [ ] JSON schema for patterns
 - [ ] CI for yaml validated via json schema
 - [ ] more regex in the catalog
 - [ ] post to places besides RXP
