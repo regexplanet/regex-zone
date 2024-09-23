@@ -12,7 +12,7 @@ const links:NavbarLinkItem[] = [
     { link: '/search.html', label: 'Search', icon: <PiMagnifyingGlass />, icon_bold: <PiMagnifyingGlassBold /> },
 ];
 
-export function HeaderSearch() {
+export function Navbar() {
 
     const items = links.map((link, index) => (<NavbarLink key={`key${index}`} link={link} />));
 

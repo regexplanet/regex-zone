@@ -7,8 +7,8 @@ import {
   ScrollRestoration,
   useRouteError,
 } from "@remix-run/react";
-import { HeaderSearch } from "./components/HeaderSearch";
-import { Footer } from "./components/Footer";
+import { Navbar } from "~/components/Navbar";
+import { Footer } from "~/components/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,7 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </style>
       </head>
       <body>
-        <HeaderSearch />
+        <Navbar />
         <div className="container-lg">
         {children}
         </div>

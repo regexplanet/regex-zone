@@ -1,7 +1,7 @@
 import type { MetaFunction } from "@remix-run/node";
 import { isRouteErrorResponse, Link as RemixLink, Links, Meta, Scripts, useRouteError } from "@remix-run/react";
 
-import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
+import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
 
 export const meta: MetaFunction = () => {
@@ -32,7 +32,7 @@ export function ErrorBoundary() {
         <Links />
       </head>
       <body>
-        <HeaderSearch />
+        <Navbar />
         <div className="container-lg">
         <h1>xx
           {isRouteErrorResponse(error)
