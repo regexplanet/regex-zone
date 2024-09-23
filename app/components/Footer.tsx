@@ -1,4 +1,4 @@
-import { ColorSchemeToggle } from "~/components/ColorSchemeToggle/ColorSchemeToggle";
+import { ColorSchemeToggle } from "~/components/ColorSchemeToggle";
 
 const links = [
     { link: 'https://github.com/regexplanet/regex-zone/issues', label: 'Feedback' },

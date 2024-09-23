@@ -1,7 +1,7 @@
 import { PiBlueprint, PiBlueprintBold, PiLink, PiMagnifyingGlass, PiMagnifyingGlassBold, PiPlay, PiPlayBold, PiUsersThree, PiUsersThreeBold } from 'react-icons/pi';
 import { Link as RemixLink } from "@remix-run/react";
 
-import RegexZoneSvg from '../Logos/RegexZoneSvg';
+import RegexZoneSvg from './RegexZoneSvg';
 import { NavbarLink, NavbarLinkItem } from '~/components/NavbarLink';
 
 const links:NavbarLinkItem[] = [

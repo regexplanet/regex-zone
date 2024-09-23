@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
   useRouteError,
 } from "@remix-run/react";
-import { HeaderSearch } from "./components/HeaderSearch/HeaderSearch";
+import { HeaderSearch } from "./components/HeaderSearch";
 import { Footer } from "./components/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
