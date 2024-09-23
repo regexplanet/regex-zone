@@ -1,8 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
-import { Container } from 'react-bootstrap';
 import { isRouteErrorResponse, Link as RemixLink, Links, Meta, Scripts, useRouteError } from "@remix-run/react";
 
-import { ColorSchemeToggle } from "~/components/ColorSchemeToggle/ColorSchemeToggle";
 import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
 import { Footer } from "~/components/Footer";
 
@@ -16,15 +14,10 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <>
-      <HeaderSearch />
-      <Container>
         <h1 className="py-2">
           Welcome to the Regex Zone
         </h1>
         <div className="pb-3">Check out the collection of useful <RemixLink to="/patterns/">Regular Expression Patterns</RemixLink>!</div>
-        <ColorSchemeToggle />
-        </Container>
-        <Footer />
     </>
   );
 }
@@ -39,6 +32,8 @@ export function ErrorBoundary() {
         <Links />
       </head>
       <body>
+        <HeaderSearch />
+        <div className="container-lg">
         <h1>xx
           {isRouteErrorResponse(error)
             ? `${error.status} ${error.statusText}`
@@ -47,6 +42,8 @@ export function ErrorBoundary() {
               : "Unknown Error"}
         </h1>
         <Scripts />
+        </div>
+        <Footer />
       </body>
     </html>
   );

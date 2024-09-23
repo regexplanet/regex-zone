@@ -1,3 +1,4 @@
+import { ColorSchemeToggle } from "~/components/ColorSchemeToggle/ColorSchemeToggle";
 
 const links = [
     { link: 'https://github.com/regexplanet/regex-zone/issues', label: 'Feedback' },
@@ -20,8 +21,14 @@ export function Footer() {
     );
 
     return (
-        <footer className="d-flex justify-content-center text-body-tertiary pt-3"><small>
-            { initial }
-        </small></footer>
+        <>
+            <hr className="pt-3" />
+            <footer className="d-flex justify-content-center align-items-center text-body-tertiary"><small className="pe-3">
+                { initial }
+            </small>
+            
+            <ColorSchemeToggle />
+            </footer>
+        </>
     )
 }

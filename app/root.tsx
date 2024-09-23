@@ -8,7 +8,7 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import { HeaderSearch } from "./components/HeaderSearch/HeaderSearch";
-import { Container } from "react-bootstrap";
+import { Footer } from "./components/Footer";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -33,7 +33,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </style>
       </head>
       <body>
+        <HeaderSearch />
+        <div className="container-lg">
         {children}
+        </div>
+        <Footer />
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -48,16 +52,7 @@ export default function App() {
 export function ErrorBoundary() {
   const error = useRouteError();
   return (
-    <html lang="en">
-      <head>
-        <title>Oops!</title>
-        <Meta />
-        <Links />
-
-      </head>
-      <body>
-        <HeaderSearch />
-        <Container>
+    <>
         <h1 className="py-2">Error</h1>
         <div>
           {isRouteErrorResponse(error)
@@ -66,9 +61,6 @@ export function ErrorBoundary() {
               ? error.message
               : "Unknown Error"}
         </div>
-        </Container>
-        <Scripts />
-      </body>
-    </html>
+    </>
   );
 }

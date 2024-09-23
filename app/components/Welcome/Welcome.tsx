@@ -1,4 +1,3 @@
-import { Anchor } from "react-bootstrap";
 
 export function Welcome() {
   return (

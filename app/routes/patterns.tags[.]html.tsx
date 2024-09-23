@@ -1,9 +1,6 @@
 import { json, type MetaFunction, SerializeFrom } from "@remix-run/node";
 import { Link as RemixLink, useLoaderData, useSearchParams } from "@remix-run/react";
-import { Container } from "react-bootstrap";
-import { Footer } from "~/components/Footer";
 
-import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
 import { getAll, initialize } from "~/components/Patterns";
 
 type TagEntry = {
@@ -71,16 +68,12 @@ export default function Index() {
 
     return (
         <>
-            <HeaderSearch />
-            <Container>
-                <h1 className="py-2">Tags</h1>
-                { TagList(currentTag, tagMap) }
-                <hr />
-                <details><summary>Raw data</summary>
-                    <pre>{JSON.stringify(tagMap, null, 4)}</pre>
-                </details>
-            </Container>
-            <Footer />
+            <h1 className="py-2">Tags</h1>
+            { TagList(currentTag, tagMap) }
+            <hr />
+            <details><summary>Raw data</summary>
+                <pre>{JSON.stringify(tagMap, null, 4)}</pre>
+            </details>
         </>
     );
 }

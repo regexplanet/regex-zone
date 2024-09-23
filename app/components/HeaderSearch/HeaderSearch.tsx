@@ -1,45 +1,34 @@
-import { PiMagnifyingGlass } from 'react-icons/pi';
-import { Link as RemixLink, useLocation } from "@remix-run/react";
-import { Container, Navbar } from 'react-bootstrap';
+import { PiBlueprint, PiBlueprintBold, PiLink, PiMagnifyingGlass, PiMagnifyingGlassBold, PiPlay, PiPlayBold, PiUsersThree, PiUsersThreeBold } from 'react-icons/pi';
+import { Link as RemixLink } from "@remix-run/react";
 
 import RegexZoneSvg from '../Logos/RegexZoneSvg';
+import { NavbarLink, NavbarLinkItem } from '~/components/NavbarLink';
 
-const links = [
-    { link: '/patterns/', label: 'Patterns' },
-    //{ link: '/docs/', label: 'Docs' },
-    { link: 'https://www.regexplanet.com/', label: 'Testing' },
-    //{ link: 'https://github.com/regexplanet/regex-zone/discussions', label: 'Community' },
-    { link: '/search.html', label: 'Search' },
-    { link: '/404', label: '404' },
+const links:NavbarLinkItem[] = [
+    { link: '/patterns/', label: 'Patterns', icon: <PiBlueprint />, icon_bold: <PiBlueprintBold /> },
+    { link: '/links/', label: 'Links', icon: <PiLink />, icon_bold: <PiLink /> },
+    { link: '/testing/', label: 'Testing', icon: <PiPlay />, icon_bold: <PiPlayBold /> },
+    { link: '/sharing/', label: 'Sharing', icon: <PiUsersThree />, icon_bold: <PiUsersThreeBold /> },
+    { link: '/search.html', label: 'Search', icon: <PiMagnifyingGlass />, icon_bold: <PiMagnifyingGlassBold /> },
 ];
 
 export function HeaderSearch() {
-    const { pathname } = useLocation();
 
-    const items = links.map((link) => (
-        <li className="nav-item" key = {link.label} >
-        <RemixLink
-            className={pathname.startsWith(link.link) ? 'nav-link active fw-bold' : 'nav-link'}
-            to={link.link}
-        >
-            {link.label}
-        </RemixLink>
-        </li>
-    ));
+    const items = links.map((link, index) => (<NavbarLink key={`key${index}`} link={link} />));
 
     return (
         <>
-            <Navbar className="bg-body-tertiary border-bottom">
-                <Container>
-                    <Navbar.Brand as={RemixLink} className="fw-bold" to="/">
-                        <RegexZoneSvg height={'2rem'} className="pe-2" />
+            <nav className="navbar navbar-expand bg-body-tertiary border-bottom">
+                <div className="container-lg">
+                    <RemixLink className="navbar-brand fs-4 fw-bold" to="/">
+                        <RegexZoneSvg height={'2rem'} className="pe-2 d-none d-md-inline" />
                         Regex Zone
-                    </Navbar.Brand>
+                    </RemixLink>
                     <ul className="navbar-nav">
                     {items}
                     </ul>
-                </Container>
-            </Navbar>
+                </div>
+            </nav>
         </>
     );
 }

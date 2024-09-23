@@ -3,11 +3,8 @@
 import { json, type MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
 //import type { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { Container, Table } from "react-bootstrap";
 import Markdown from 'react-markdown'
-import { Footer } from "~/components/Footer";
 
-import { HeaderSearch } from "~/components/HeaderSearch/HeaderSearch";
 import { get, initialize, PatternEntry, PatternEntryVariation } from "~/components/Patterns";
 import { TagList } from "~/components/TagList";
 
@@ -28,7 +25,7 @@ export const meta: MetaFunction = () => {
 
 function PatternEntryView(entry: PatternEntry) {
     return (
-        <Container>
+        <>
 
             <div className="float-end mt-4">
                 {entry.tags ? TagList(entry.tags) : <i>(none)</i>}
@@ -38,7 +35,7 @@ function PatternEntryView(entry: PatternEntry) {
 
             {entry.detail ? <Markdown>{entry.detail}</Markdown> : null}
 
-            <Table className="table-striped table-hover">
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Variation</th>
@@ -48,12 +45,11 @@ function PatternEntryView(entry: PatternEntry) {
                 <tbody>
                     {entry.variations.length > 0 ? (entry.variations.map((variation) => PatternEntryVariationView(variation))) : <tr><td>(none)</td></tr>}
                 </tbody>
-            </Table>
+            </table>
             <details><summary>Raw data</summary>
                 <pre>{JSON.stringify(entry, null, 4)}</pre>
             </details>
-            <Footer />
-        </Container>
+        </>
     );
 }
 
@@ -71,7 +67,6 @@ export default function Index() {
 
     return (
         <>
-            <HeaderSearch />
             {entry ? PatternEntryView(entry) : <h1>Not Found</h1>}
         </>
     );
