@@ -2,7 +2,8 @@ import { PiBlueprint, PiBlueprintBold, PiLink, PiMagnifyingGlass, PiMagnifyingGl
 import { Link as RemixLink } from "@remix-run/react";
 
 import RegexZoneSvg from './RegexZoneSvg';
-import { NavbarLink, NavbarLinkItem } from '~/components/NavbarLink';
+import { NavbarLink, NavbarLinkItem } from './NavbarLink';
+import { AuthButton } from './AuthButton';
 
 const links:NavbarLinkItem[] = [
     { link: '/patterns/', label: 'Patterns', icon: <PiBlueprint />, icon_bold: <PiBlueprintBold /> },
@@ -19,14 +20,15 @@ export function Navbar() {
     return (
         <>
             <nav className="navbar navbar-expand bg-body-tertiary border-bottom">
-                <div className="container-lg">
-                    <RemixLink className="navbar-brand fs-4 fw-bold" to="/">
+                <div className="container-lg d-flex">
+                    <RemixLink className="navbar-brand fs-4 fw-bold flex-grow-1" to="/">
                         <RegexZoneSvg height={'2rem'} className="pe-2 d-none d-md-inline" />
                         Regex Zone
                     </RemixLink>
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav mt-1">
                     {items}
                     </ul>
+                    <AuthButton />
                 </div>
             </nav>
         </>

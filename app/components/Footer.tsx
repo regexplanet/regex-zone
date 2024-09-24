@@ -1,10 +1,10 @@
 import { ColorSchemeToggle } from "~/components/ColorSchemeToggle";
 
 const links = [
-    { link: 'https://github.com/regexplanet/regex-zone/issues', label: 'Feedback' },
+    //{ link: 'https://github.com/regexplanet/regex-zone/issues', label: 'Feedback' },
     { link: 'https://github.com/regexplanet/regex-zone?tab=readme-ov-file#credits', label: 'Credits'},
     { link: 'https://github.com/regexplanet/regex-zone', label: 'Source' },
-    { link: 'https://github.com/regexplanet/regex-zone?tab=readme-ov-file#other-libraries-of-regex-patterns', label: 'Alternatives' },
+    //{ link: 'https://github.com/regexplanet/regex-zone?tab=readme-ov-file#other-libraries-of-regex-patterns', label: 'Alternatives' },
 ];
 
 export function Footer() {
@@ -15,7 +15,7 @@ export function Footer() {
                 {link.label}
             </a>);
             if (index < links.length - 1) {
-                initial.push(<span className="mx-1" key="key{{index}}">|</span>);
+                initial.push(<span className="mx-1" key={`key${index}`}>|</span>);
             }
         }
     );
@@ -27,7 +27,7 @@ export function Footer() {
                 { initial }
             </small>
             
-            <ColorSchemeToggle />
+            <ColorSchemeToggle key="cst"/>
             </footer>
         </>
     )
