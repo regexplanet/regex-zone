@@ -1,6 +1,5 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
 import { Link as RemixLink, useLoaderData } from "@remix-run/react";
-import { PiGithubLogoBold } from "react-icons/pi";
 import { authenticator } from "~/services/auth.server";
 
 export async function loader({ request }: LoaderFunctionArgs) {
