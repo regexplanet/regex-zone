@@ -49,7 +49,6 @@ export default function AuthLogout() {
       <h1 className="py-2">Logout</h1>
       <p>{message.text}</p>
       <p>
-        <RemixLink className="btn btn-primary mx-2" to="/auth/">Login</RemixLink>
         <RemixLink className="btn btn-primary mx-2" to="/">Home</RemixLink>
       </p>
     </>

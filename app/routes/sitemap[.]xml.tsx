@@ -12,6 +12,7 @@ export async function loader() {
     lines.push('<?xml-stylesheet type="text/xsl" href="/sitemap.xslt" ?>');
     lines.push('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9">');
     lines.push(urlLine('/'));
+    lines.push(urlLine('/contact.html'));
     lines.push(urlLine('/patterns/'));
     lines.push(urlLine('/patterns/tags.html'));
     lines.push(urlLine('/search.html'));

@@ -3,6 +3,8 @@
 import { json, type MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
 //import type { LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
+import { useCopyToClipboard } from "@uidotdev/usehooks";
+import { PiClipboardBold, PiPlayBold } from "react-icons/pi";
 import Markdown from 'react-markdown'
 
 import { get, initialize, PatternEntry, PatternEntryVariation } from "~/components/Patterns";
@@ -54,10 +56,24 @@ function PatternEntryView(entry: PatternEntry) {
 }
 
 function PatternEntryVariationView(variation: PatternEntryVariation) {
+    const [_, copyToClipboard] = useCopyToClipboard();
     return (
         <tr>
             <td>{variation.title}</td>
-            <td><code>{variation.pattern}</code></td>
+            <td>
+                <code>{variation.pattern}</code>
+            </td>
+            <td>
+                <button
+                    className="btn btn-sm btn-outline-secondary ms-2 px-1 pt-0 pb-1"
+                    onClick={() => copyToClipboard(variation.pattern)}
+                ><PiClipboardBold title="copy to clipboard" /></button>
+                <form action="https://www.regexplanet.com/advanced/java/index.html" className="d-inline" method="post" target="_blank">
+                    <input type="hidden" name="regex" value={variation.pattern} />
+                    <input type="hidden" name="replacement" value={variation.replacement} />
+                    <button className="btn btn-sm btn-outline-secondary ms-2 px-1 pt-0 pb-1" ><PiPlayBold title="Test" /></button>
+                </form>
+            </td>
         </tr>
     )
 }

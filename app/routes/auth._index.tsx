@@ -1,7 +1,8 @@
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { Link as RemixLink, useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "@remix-run/react";
 import { authenticator } from "~/services/auth.server";
 import { cookieStorage } from "~/services/session.server";
+import { User } from "~/types/User";
 
 export async function loader({ request }: LoaderFunctionArgs) {
     //console.log('in loader', (await cookieStorage.getSession(request.headers.get("Cookie"))).get("user"))
@@ -9,8 +10,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const sessionUser = session.get("user");
     const authUser = await authenticator.isAuthenticated(request);
     return {
-        //
-        user: sessionUser,
+        user: authUser,
         sessionUser,
         authUser,
         session: (await cookieStorage.getSession(request.headers.get("Cookie")))
@@ -21,12 +21,14 @@ function LoginSection() {
     return (
         <>
             <p>You are not logged in!</p>
-            <RemixLink className="btn btn-primary" to="login.html">Login</RemixLink>
+            <form action="/auth/github" method="post">
+                <button type="submit" className="btn btn-primary">Login with Github</button>
+            </form>
         </>
     )
 }
 
-function LogoutSection({ user }: { user: any }) {
+function LogoutSection({ user }: { user: User }) {
     return (
         <>
             <p>You are logged in as <span className="border rounded bg-body-tertiary text-body-secondary p-2">{user.displayName} ({user.providerName}@{user.provider})</span></p>

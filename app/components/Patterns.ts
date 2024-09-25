@@ -16,6 +16,7 @@ export type PatternEntry = {
 export type PatternEntryVariation = {
   title: string;
   pattern: string;
+  replacement?: string;
   description?: string;
 };
 

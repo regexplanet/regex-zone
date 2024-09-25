@@ -4,6 +4,7 @@ const links = [
     //{ link: 'https://github.com/regexplanet/regex-zone/issues', label: 'Feedback' },
     { link: 'https://github.com/regexplanet/regex-zone?tab=readme-ov-file#credits', label: 'Credits'},
     { link: 'https://github.com/regexplanet/regex-zone', label: 'Source' },
+    { link: '/contact.html', label: 'Contact' },
     //{ link: 'https://github.com/regexplanet/regex-zone?tab=readme-ov-file#other-libraries-of-regex-patterns', label: 'Alternatives' },
 ];
 
