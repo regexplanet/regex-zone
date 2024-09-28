@@ -10,9 +10,10 @@ export function Tag({ tag, url }: TagProps) {
         <RemixLink
             key={tag}
             to={url}
+            preventScrollReset={true}
             className="badge text-bg-primary text-decoration-none me-2"
         >
-            {tag.replace('-', ' ')}
+            {tag.replaceAll('-', ' ')}
         </RemixLink>
     );
 }

@@ -14,7 +14,7 @@ export type TagTreeEntry = {
 function TagTreeRow(tag: string, currentTag: string, entries: SerializeFrom<TagTreeEntry>[]) {
     return (
         <details className="mt-2" open={tag === currentTag}>
-            <summary><Tag tag={tag} url={`?tag=${tag}`} /></summary>
+            <summary><Tag tag={tag} url={`?tag=${encodeURIComponent(tag)}`} /></summary>
             <ul className="mt-1">
                 {entries?.map((entry) => (
                     <li key={entry.url}>

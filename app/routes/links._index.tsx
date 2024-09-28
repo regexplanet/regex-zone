@@ -1,17 +1,16 @@
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json, Link as RemixLink, useLoaderData, useRouteLoaderData } from "@remix-run/react";
+import { desc } from "drizzle-orm";
+
 import { cookieStorage } from "~/services/session.server";
 import { User } from "~/types/User";
 import { AlertWidget } from "~/components/AlertWidget";
 import type { AlertMessage } from "~/types/AlertMessage";
 import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
-import { LinkTagUrlBuilder } from "~/util/LinkTagUrlBuilder";
-import { TagList } from "~/components/TagList";
 import { authenticator } from "~/services/auth.server";
 import { AdminIcon } from "~/components/AdminIcon";
-import { getLinkDomain } from "~/util/getLinkDomain";
-import { ItemLinks } from "~/components/ItemLinks";
+import LinksTable from "~/components/LinksTable";
 
 export const meta: MetaFunction = () => {
     return [
@@ -28,7 +27,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const message = session.get("message");
     console.log("loader message", JSON.stringify(message));
 
-    const links = await dborm.select().from(regex_link);
+    const links = await dborm.select().from(regex_link).orderBy(desc(regex_link.rxl_created_at)).limit(100);
 
     const user = authenticator.isAuthenticated(request);
 
@@ -51,44 +50,26 @@ export default function Index() {
 
     const message = data.message as AlertMessage | undefined;
 
-    const links = data.links;
+    const links = data.links as unknown as typeof regex_link.$inferSelect[];
 
     return (
         <>
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="py-2">Links</h1>
-                {user && user.isAdmin ?
-                    <div>
-                        <RemixLink to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</RemixLink>
-                        <RemixLink to="/links/import.html" className="btn btn-primary mx-1"><AdminIcon /> Import</RemixLink>
-                    </div>
-                    : null}
+                <div>
+                    <RemixLink to="/links/tags.html" className="btn btn-primary mx-1">Tags</RemixLink>
+                    <RemixLink to="/links/archive/" className="btn btn-primary mx-1">Archive</RemixLink>
+                    {user && user.isAdmin ?
+                        <>
+                            <RemixLink to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</RemixLink>
+                            <RemixLink to="/links/import.html" className="btn btn-primary mx-1"><AdminIcon /> Import</RemixLink>
+                        </>
+                        : null}
+                </div>
             </div>
             {message ? <AlertWidget alert={message} /> : null}
-            {links.length == 0 ? <div className="alert alert-warning">No links found</div> :
-                <table className="table table-striped table-hover">
-                    <thead className="d-none">
-                        <tr>
-                            <th>Description</th>
-                            <th>Tags</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {links.map(link => (
-                            <tr key={link.rxl_id}>
-                                <td>
-                                    <a className="me-2" href={link.rxl_url}>{link.rxl_title}</a>
-                                    ({getLinkDomain(link.rxl_url)})
-                                </td>
-                                <td className="text-end">
-                                    <TagList tags={link.rxl_tags.sort()} urlBuilder={LinkTagUrlBuilder} />
-                                    {user && user.isAdmin ? <ItemLinks adminOnly={true} type="link" id={link.rxl_id} /> : null}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            }
+            <LinksTable currentUrl="/links/" links={links} isAdmin={user?.isAdmin}  />
+            <RemixLink to="/links/archive/" className="btn btn-primary">Archive</RemixLink>
         </>
     );
 }

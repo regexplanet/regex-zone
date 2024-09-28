@@ -24,14 +24,16 @@ type ItemLinksProps = {
     type: ItemType;
     id: string;
     adminOnly?: boolean;
+    currentUrl?: string;
 }
 
-export function ItemLinks({ id, type, adminOnly }: ItemLinksProps) {
+export function ItemLinks({ currentUrl, id, type, adminOnly }: ItemLinksProps) {
     const typeInfo = itemTypeMap[type];
+    const currentUrlParam = currentUrl ? `&next=${encodeURIComponent(currentUrl)}` : "";
     return (
         <>
-            <RemixLink to={`${typeInfo.baseUrl}edit.html?${typeInfo.column_prefix}id=${id}`} className="btn btn-sm btn-secondary mx-1">{ adminOnly ? <AdminIcon /> : null } Edit</RemixLink>
-            <RemixLink to={`${typeInfo.baseUrl}delete.html?${typeInfo.column_prefix}id=${id}`} className="btn btn-sm btn-secondary mx-1">{adminOnly ? <AdminIcon /> : null} Delete</RemixLink>
+            <RemixLink to={`${typeInfo.baseUrl}edit.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{ adminOnly ? <AdminIcon /> : null } Edit</RemixLink>
+            <RemixLink to={`${typeInfo.baseUrl}delete.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{adminOnly ? <AdminIcon /> : null} Delete</RemixLink>
         </>
     );
 }
