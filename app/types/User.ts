@@ -5,5 +5,6 @@ export type User = {
   provider: string;
   providerName: string;
   id: string;
+  isAdmin: boolean;
   isAnonymous?: boolean;
 };

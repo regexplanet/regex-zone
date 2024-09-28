@@ -1,0 +1,104 @@
+{
+  "id": "bc0f03a2-434a-4e5a-b750-79955b309eeb",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.regex_link": {
+      "name": "regex_link",
+      "schema": "",
+      "columns": {
+        "rxl_id": {
+          "name": "rxl_id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "CONCAT('rxl_', gen_random_uuid()::VARCHAR)"
+        },
+        "rxl_created_at": {
+          "name": "rxl_created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "rxl_updated_at": {
+          "name": "rxl_updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "rxl_title": {
+          "name": "rxl_title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rxl_url": {
+          "name": "rxl_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "rxl_cached": {
+          "name": "rxl_cached",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::jsonb"
+        },
+        "rxl_tags": {
+          "name": "rxl_tags",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "ARRAY[]::text[]"
+        }
+      },
+      "indexes": {
+        "created_at_idx": {
+          "name": "created_at_idx",
+          "columns": [
+            {
+              "expression": "rxl_created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "rxl_url_idx": {
+          "name": "rxl_url_idx",
+          "columns": [
+            {
+              "expression": "rxl_url",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

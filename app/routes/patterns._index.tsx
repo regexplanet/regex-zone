@@ -4,6 +4,7 @@ import { json } from "@remix-run/node";
 
 import { getAll, initialize, PatternEntry } from "~/components/Patterns";
 import { TagList } from "~/components/TagList";
+import { PatternTagUrlBuilder } from "~/util/PatternTagUrlBuilder";
 
 export const loader = async () => {
     await initialize();
@@ -24,7 +25,7 @@ function PatternEntryRow(entry: PatternEntry) {
                 <RemixLink to={`${entry.handle}/`}>{entry.title}</RemixLink>
             </td>
             <td style={{ 'textAlign': 'right' }}>
-                {entry.tags ? TagList(entry.tags) : null}
+                {entry.tags ? <TagList tags={entry.tags} urlBuilder={PatternTagUrlBuilder} /> : null}
                 <div className="badge text-bg-secondary">{entry.variations.length}</div>
             </td>
         </tr>

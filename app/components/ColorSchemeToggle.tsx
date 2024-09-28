@@ -1,9 +1,4 @@
-'use client';
-
 import React from "react";
-
-
-
 
 function getColorScheme() {
 
@@ -20,12 +15,10 @@ function getColorScheme() {
   } else {
     return 'light';
   }
-
 }
 
 export function ColorSchemeToggle() {
   const [ currentScheme, setColorScheme ] = React.useState(getColorScheme());
-
 
   const onClick = (scheme: 'light' | 'dark' | 'auto') => {
     if (scheme == 'auto') {
@@ -46,5 +39,3 @@ export function ColorSchemeToggle() {
     </div>
   );
 }
-
-//      <button onClick={() => setColorScheme('auto')}>Auto</button>

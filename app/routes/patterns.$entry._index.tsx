@@ -9,6 +9,7 @@ import Markdown from 'react-markdown'
 
 import { get, initialize, PatternEntry, PatternEntryVariation } from "~/components/Patterns";
 import { TagList } from "~/components/TagList";
+import { PatternTagUrlBuilder } from "~/util/PatternTagUrlBuilder";
 
 export const loader = async ({
     params,
@@ -29,11 +30,12 @@ function PatternEntryView(entry: PatternEntry) {
     return (
         <>
 
-            <div className="float-end mt-4">
-                {entry.tags ? TagList(entry.tags) : <i>(none)</i>}
+            <div className="d-flex justify-content-between align-items-center">
+                <h1 className="py-2">{entry.title}</h1>
+                <div>
+                {entry.tags ? <TagList tags={entry.tags} urlBuilder={PatternTagUrlBuilder} /> : <i>(none)</i>}
+                </div>
             </div>
-
-            <h1 className="py-2">{entry.title}</h1>
 
             {entry.detail ? <Markdown>{entry.detail}</Markdown> : null}
 

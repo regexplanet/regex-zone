@@ -1,6 +1,6 @@
 
 
-function processOrThrow(envvar:string): string {
+function processEnvOrThrow(envvar:string): string {
 
     const retVal = process.env[envvar];
 
@@ -12,5 +12,5 @@ function processOrThrow(envvar:string): string {
 }
 
 export {
-    processOrThrow
+    processEnvOrThrow
 }

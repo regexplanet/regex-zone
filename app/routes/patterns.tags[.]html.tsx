@@ -2,6 +2,7 @@ import { json, type MetaFunction, SerializeFrom } from "@remix-run/node";
 import { Link as RemixLink, useLoaderData, useSearchParams } from "@remix-run/react";
 
 import { getAll, initialize } from "~/components/Patterns";
+import { Tag } from "~/components/Tag";
 
 type TagEntry = {
     title: string;
@@ -40,7 +41,7 @@ export const meta: MetaFunction = () => {
 function TagRow(tag:string, currentTag: string, entries: SerializeFrom<TagEntry>[]) {
     return (
         <details className="mt-2" open={ tag === currentTag}>
-            <summary><span className="badge fs-6 text-bg-primary">{tag.replaceAll('-', ' ')}</span></summary>
+            <summary><Tag tag={tag} url={`?tag=${tag}`} /></summary>
             <ul className="mt-1">
                 {entries?.map((entry) => (
                     <li key={entry.url}>
@@ -52,7 +53,7 @@ function TagRow(tag:string, currentTag: string, entries: SerializeFrom<TagEntry>
     )
 }
 
-function TagList(currentTag: string, tagMap: SerializeFrom<{ [key: string]: SerializeFrom<TagEntry>[]}>) {
+function TagTreeList(currentTag: string, tagMap: SerializeFrom<{ [key: string]: SerializeFrom<TagEntry>[]}>) {
     return (
         <>
             { Object.entries(tagMap).map(([key, entries]) => TagRow(key, currentTag, entries)) }
@@ -69,7 +70,7 @@ export default function Index() {
     return (
         <>
             <h1 className="py-2">Tags</h1>
-            { TagList(currentTag, tagMap) }
+            { TagTreeList(currentTag, tagMap) }
             <hr />
             <details><summary>Raw data</summary>
                 <pre>{JSON.stringify(tagMap, null, 4)}</pre>

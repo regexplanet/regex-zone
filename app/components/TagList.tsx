@@ -1,12 +1,17 @@
 import { Link as RemixLink } from "@remix-run/react";
 
-export function TagList(tags: string[]) {
+type TagListProps = {
+    tags: string[],
+    urlBuilder: (tag: string) => string,
+}
+
+export function TagList( {tags, urlBuilder }: TagListProps)  {
     return (
         <>
             {tags.map((tag) => (
                 <RemixLink
                     key={tag}
-                    to={`/patterns/tags.html?tag=${tag}`}
+                    to={urlBuilder(tag)}
                     className="badge text-bg-primary text-decoration-none me-2"
                 >
                     {tag.replace('-', ' ')}
