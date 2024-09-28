@@ -2,7 +2,7 @@ import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remi
 import { json, Link as RemixLink, redirect, useLoaderData } from "@remix-run/react";
 import { eq } from "drizzle-orm"
 
-import { db } from "~/db/connection.server";
+import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
 import { authenticator } from "~/services/auth.server";
 import { getFormString } from "~/util/getFormString";
@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
         return redirect("/links/");
     }
     
-    const links = await db.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
+    const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
         return redirect("/links/");
@@ -48,7 +48,7 @@ export async function action({ request }: ActionFunctionArgs) {
         return redirect("/links/");
     }
 
-    const links = await db.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
+    const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
         return redirect("/links/");
@@ -61,7 +61,7 @@ export async function action({ request }: ActionFunctionArgs) {
     }
 
 
-    await db.delete(regex_link).where(eq(regex_link.rxl_id, rxl_id));
+    await dborm.delete(regex_link).where(eq(regex_link.rxl_id, rxl_id));
 
     //LATER: flash success
     return redirect("/links/");

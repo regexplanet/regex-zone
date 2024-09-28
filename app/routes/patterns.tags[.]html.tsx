@@ -1,18 +1,13 @@
-import { json, type MetaFunction, SerializeFrom } from "@remix-run/node";
-import { Link as RemixLink, useLoaderData, useSearchParams } from "@remix-run/react";
+import { json, type MetaFunction } from "@remix-run/node";
+import { useLoaderData, useSearchParams } from "@remix-run/react";
 
 import { getAll, initialize } from "~/components/Patterns";
-import { Tag } from "~/components/Tag";
-
-type TagEntry = {
-    title: string;
-    url: string;
-}
+import { type TagTreeEntry, TagTree } from "~/components/TagTree";
 
 export const loader = async () => {
     await initialize();
 
-    const tagMap: { [key: string]: TagEntry[] } = {};
+    const tagMap: { [key: string]: TagTreeEntry[] } = {};
 
     for (const entry of getAll()) {
         if (entry.tags) {
@@ -33,36 +28,13 @@ export const loader = async () => {
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Tags - Regex Zone" },
-        { name: "description", content: "Regular Expressions Patterns by Tag" },
+        { title: "Patterns by Tag - Regex Zone" },
     ];
 };
 
-function TagRow(tag:string, currentTag: string, entries: SerializeFrom<TagEntry>[]) {
-    return (
-        <details className="mt-2" open={ tag === currentTag}>
-            <summary><Tag tag={tag} url={`?tag=${tag}`} /></summary>
-            <ul className="mt-1">
-                {entries?.map((entry) => (
-                    <li key={entry.url}>
-                        <RemixLink to={entry.url}>{entry.title}</RemixLink>
-                    </li>
-                ))}
-            </ul>
-        </details>
-    )
-}
-
-function TagTreeList(currentTag: string, tagMap: SerializeFrom<{ [key: string]: SerializeFrom<TagEntry>[]}>) {
-    return (
-        <>
-            { Object.entries(tagMap).map(([key, entries]) => TagRow(key, currentTag, entries)) }
-        </>
-    );
-}
 
 
-export default function Index() {
+export default function Tags() {
     const tagMap = useLoaderData<typeof loader>();
     const [searchParams] = useSearchParams();
     const currentTag = searchParams.get("tag") || "";
@@ -70,7 +42,7 @@ export default function Index() {
     return (
         <>
             <h1 className="py-2">Tags</h1>
-            { TagTreeList(currentTag, tagMap) }
+            { TagTree(currentTag, tagMap) }
             <hr />
             <details><summary>Raw data</summary>
                 <pre>{JSON.stringify(tagMap, null, 4)}</pre>

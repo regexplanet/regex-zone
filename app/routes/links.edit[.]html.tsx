@@ -2,7 +2,7 @@ import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remi
 import { json, Link as RemixLink, redirect, useLoaderData } from "@remix-run/react";
 import { eq } from "drizzle-orm"
 
-import { db } from "~/db/connection.server";
+import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
 import { authenticator } from "~/services/auth.server";
 import { getFormString } from "~/util/getFormString";
@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
         return redirect("/links/");
     }
     
-    const links = await db.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
+    const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
         return redirect("/links/");
@@ -50,7 +50,7 @@ export async function action({ request }: ActionFunctionArgs) {
     }
 
     console.log("updating link 2", rxl_id, JSON.stringify(formData));
-    const links = await db.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
+    const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
         return redirect("/links/");
@@ -65,10 +65,12 @@ export async function action({ request }: ActionFunctionArgs) {
 
     console.log("updating link 4", rxl_id, getFormString(formData.get("rxl_title")));
 
-    await db.update(regex_link).set({
+    const tags = getFormString(formData.get("rxl_tags")).split(' ').map(tag => tag.trim()).filter(tag => tag != "");  
+
+    await dborm.update(regex_link).set({
         rxl_url: getFormString(formData.get("rxl_url")),
         rxl_title: getFormString(formData.get("rxl_title")),
-        rxl_tags: getFormString(formData.get("rxl_tags")).split(' '),
+        rxl_tags: tags,
         rxl_updated_at: new Date(),
     }).where(eq(regex_link.rxl_id, rxl_id));
 

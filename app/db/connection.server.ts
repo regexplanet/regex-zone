@@ -18,8 +18,8 @@ function connect() {
         }
     });
 }
+const dbconnection = connect();
 
+const dborm = drizzle(dbconnection, { schema });
 
-const db = drizzle(connect(), { schema });
-
-export { connect, db };
+export { dbconnection, dborm };

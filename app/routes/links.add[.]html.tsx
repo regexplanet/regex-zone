@@ -1,8 +1,7 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, redirect, useLoaderData } from "@remix-run/react";
-import { eq } from "drizzle-orm"
+import { json, Link as RemixLink, redirect } from "@remix-run/react";
 
-import { db } from "~/db/connection.server";
+import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
 import { authenticator } from "~/services/auth.server";
 import { getFormString } from "~/util/getFormString";
@@ -30,7 +29,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export async function action({ request }: ActionFunctionArgs) {
     const formData = await request.formData();
 
-    await db.insert(regex_link).values({
+    await dborm.insert(regex_link).values({
         rxl_url: getFormString(formData.get("rxl_url")),
         rxl_title: getFormString(formData.get("rxl_title")),
         rxl_tags: getFormString(formData.get("rxl_tags")).split(' '),
