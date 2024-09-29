@@ -1,4 +1,5 @@
 import { getAll, initialize } from "~/components/Patterns";
+import { MIN_ARCHIVE_YEAR } from "~/util/constants";
 
 function urlLine(url:string) {
     return `\t<url><loc>https://www.regex.zone${url}</loc></url>`
@@ -20,6 +21,17 @@ export async function loader() {
     await initialize();
     for (const entry of getAll()) {
         lines.push(urlLine(`/patterns/${entry.handle}/`));
+    }
+
+    lines.push(urlLine('/links/'));
+    lines.push(urlLine('/links/tags.html'));
+    lines.push(urlLine('/links/archive/'));
+    const currentYear = new Date().getFullYear();
+    for (let year = MIN_ARCHIVE_YEAR; year <= currentYear; year++) {
+        if (year == 2010) {
+            continue;   // hack since no links in 2010
+        }
+        lines.push(urlLine(`/links/archive/${year}/`));
     }
 
     lines.push('</urlset>')
