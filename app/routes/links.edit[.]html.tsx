@@ -104,11 +104,11 @@ export default function Index() {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="rxl_created" className="form-label">Created</label>
-                    <input type="text" className="form-control" id="rxl_created" defaultValue={theLink.rxl_created_at} disabled readOnly />
+                    <input type="text" className="form-control" id="rxl_created" defaultValue={theLink.rxl_created_at.toString().replace('T', ' ')} disabled readOnly />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="rxl_updated" className="form-label">Updated</label>
-                    <input type="text" className="form-control" id="rxl_updated" defaultValue={theLink.rxl_updated_at} disabled readOnly />
+                    <input type="text" className="form-control" id="rxl_updated" defaultValue={theLink.rxl_updated_at.toString().replace('T', ' ')} disabled readOnly />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Save" />
                 <RemixLink className="btn btn-outline-primary mx-2" to={next}>Cancel</RemixLink>
