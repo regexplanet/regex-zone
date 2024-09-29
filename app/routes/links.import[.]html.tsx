@@ -65,8 +65,8 @@ export const action = async ({
         console.log(JSON.stringify(entry));
         const existing = await dborm.select().from(regex_link).where(eq(regex_link.rxl_url, entry.href));
         if (existing.length > 0) {
-            console.log("skipping", entry.href);
-            continue;
+            console.log(`found ${entry.href}, stopping...`);
+            break;
         }
         console.log("inserting", entry.href);
         await dborm.insert(regex_link).values({

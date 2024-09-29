@@ -63,6 +63,7 @@ export default function Index() {
                         <>
                             <RemixLink to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</RemixLink>
                             <RemixLink to="/links/import.html" className="btn btn-primary mx-1"><AdminIcon /> Import</RemixLink>
+                            <a href="/links/backup.json" className="btn btn-primary mx-1"><AdminIcon /> Backup</a>
                         </>
                         : null}
                 </div>
