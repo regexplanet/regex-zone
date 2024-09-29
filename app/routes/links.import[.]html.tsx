@@ -30,7 +30,6 @@ export const meta: MetaFunction = () => {
 export const action = async ({
     request,
 }: ActionFunctionArgs) => {
-    console.log("import action");
 
     const user: User | null = await authenticator.isAuthenticated(request);
     if (!user) {
@@ -56,8 +55,6 @@ export const action = async ({
 
     const textData = await dataBlob.text();
 
-    console.log("data length", textData.length);
-
     let jsonData = JSON.parse(textData) as PinboardEntry[];
 
     jsonData = jsonData.filter(entry => entry.tags.indexOf("regex") !== -1);
@@ -68,7 +65,7 @@ export const action = async ({
             console.log(`found ${entry.href}, stopping...`);
             break;
         }
-        console.log("inserting", entry.href);
+        console.log(`inserting ${entry.href}`);
         await dborm.insert(regex_link).values({
             rxl_url: entry.href,
             rxl_title: entry.description,
@@ -96,7 +93,6 @@ export const action = async ({
 };
 
 export function loader(args: LoaderFunctionArgs) {
-    console.log("import loader");
     return adminOnlyLoader(args);
 }
 
@@ -106,7 +102,7 @@ import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
 
 export const shouldRevalidate: ShouldRevalidateFunction = (params) => {
-    console.log("shouldRevalidate", params);
+    console.log("shouldRevalidate", params);    // never called
     return params.defaultShouldRevalidate;
 };
 

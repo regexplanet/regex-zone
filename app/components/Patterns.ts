@@ -30,7 +30,7 @@ async function initialize() {
   const fileNames = await fsPromises.readdir(PATTERN_DIR);
   for await (const fileName of fileNames) {
     const fullPath = path.join(PATTERN_DIR, fileName);
-    console.log(`filename=${fullPath}`);
+    console.log(`loading filename=${fullPath}`);
 
     const raw = await fsPromises.readFile(fullPath, "utf-8");
     const parsed = yaml.load(raw, {

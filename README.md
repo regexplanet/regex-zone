@@ -46,3 +46,7 @@ LATER
 [![Remix](https://www.vectorlogo.zone/logos/remixrun/remixrun-ar21.svg)](https://remix.run/ "React Framework")
 [![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg)](https://www.typescriptlang.org/ "Programming Language")
 [![Vite](https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-ar21.svg)](https://vitejs.dev/ "Bundler")
+
+* [SVGR](https://react-svgr.com/)
+* [Drizzle ORM](https://orm.drizzle.team/)
+* [Postgres.js](https://github.com/porsager/postgres)

@@ -5,7 +5,6 @@ import { cookieStorage } from "~/services/session.server";
 export async function loader({ request }: LoaderFunctionArgs) {
   const user = await authenticator.authenticate("github", request);
 
-  console.log('user in callback', JSON.stringify(user));
   if (user != null) {
     const session = await cookieStorage.getSession(request.headers.get("Cookie"));
     session.set("user", user);

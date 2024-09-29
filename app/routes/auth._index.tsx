@@ -5,7 +5,6 @@ import { cookieStorage } from "~/services/session.server";
 import { User } from "~/types/User";
 
 export async function loader({ request }: LoaderFunctionArgs) {
-    //console.log('in loader', (await cookieStorage.getSession(request.headers.get("Cookie"))).get("user"))
     const session = await cookieStorage.getSession(request.headers.get("Cookie"));
     const sessionUser = session.get("user");
     const authUser = await authenticator.isAuthenticated(request);

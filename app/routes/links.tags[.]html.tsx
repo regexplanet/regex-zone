@@ -14,8 +14,6 @@ export async function loader() {
 
     const taglinks = await dbconnection`SELECT rxl_id, rxl_title, rxl_url, UNNEST(rxl_tags) as tag FROM regex_link ORDER BY tag`;
 
-    console.log(taglinks);
-
     const tagmap: { [key: string]: TagTreeEntry[]; } = {};
     for (const taglink of taglinks) {
         const tag = taglink.tag;
@@ -26,8 +24,6 @@ export async function loader() {
         }
         links.push({ id: taglink.rxl_id, title: taglink.rxl_title, url: taglink.rxl_url });
     }
-
-    console.log(tagmap);
 
     return json(tagmap);
 }

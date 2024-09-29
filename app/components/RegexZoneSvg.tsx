@@ -1,5 +1,4 @@
-import * as React from "react"
-
+// code generated at https://react-svgr.com/playground/
 
 const SvgComponent = (props) => (
     <svg

@@ -25,7 +25,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
     // Retrieve the session value set in the previous request
     const message = session.get("message");
-    console.log("loader message", JSON.stringify(message));
 
     const links = await dborm.select().from(regex_link).orderBy(desc(regex_link.rxl_created_at)).limit(100);
 
@@ -45,8 +44,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
 export default function Index() {
     const user = useRouteLoaderData<User | null>("root");
     const data = useLoaderData<typeof loader>();
-
-    console.log("func message", JSON.stringify(data));
 
     const message = data.message as AlertMessage | undefined;
 

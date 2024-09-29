@@ -58,6 +58,7 @@ function PatternEntryView(entry: PatternEntry) {
 }
 
 function PatternEntryVariationView(variation: PatternEntryVariation) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [_, copyToClipboard] = useCopyToClipboard();
     return (
         <tr>

@@ -14,7 +14,6 @@ export function AuthButton() {
         }
     }
 
-    console.log('authbutton', JSON.stringify(user));
     return (
         <>
             <RemixLink className="d-none d-sm-inline text-body-emphasis" to="/auth/" style={{ "fontSize": "1.75rem" }}>
