@@ -13,8 +13,18 @@ export type TagTreeEntry = {
 
 function TagTreeRow(tag: string, currentTag: string, entries: SerializeFrom<TagTreeEntry>[]) {
     return (
-        <details className="mt-2" open={tag === currentTag}>
-            <summary><Tag tag={tag} url={`?tag=${encodeURIComponent(tag)}`} /></summary>
+        <details className="mt-2" open={tag === currentTag} key={tag} id={tag}>
+            <summary><Tag tag={tag} url={`?tag=${encodeURIComponent(tag)}`} onClick={(e) => {
+                console.log(`clicked ${tag}`);
+                e.preventDefault();
+                const el = document.getElementById(tag) as HTMLDetailsElement | null;
+                if (el == null) {
+                    console.log(`how is el for ${tag} null?`);
+                    return;
+                }
+                el.open = !el.open;
+                history.replaceState(null, "", `?tag=${encodeURIComponent(tag)}`);
+            }} /> ({entries.length})</summary>
             <ul className="mt-1">
                 {entries?.map((entry) => (
                     <li key={entry.url}>

@@ -43,10 +43,9 @@ export default function Tags() {
         <>
             <h1 className="py-2">Tags</h1>
             { TagTree(currentTag, tagMap) }
-            <hr />
-            <details><summary>Raw data</summary>
-                <pre>{JSON.stringify(tagMap, null, 4)}</pre>
-            </details>
+            <div className="mt-3">
+                {Object.entries(tagMap).length} tags
+            </div>
         </>
     );
 }

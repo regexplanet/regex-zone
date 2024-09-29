@@ -1,6 +1,7 @@
 import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import { json, Link as RemixLink, redirect, useLoaderData, useSearchParams } from "@remix-run/react";
 import { eq } from "drizzle-orm"
+import { PiArrowSquareOut } from "react-icons/pi";
 
 import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
@@ -81,7 +82,7 @@ export default function Index() {
     const [searchParams] = useSearchParams();
     const next = searchParams.get("next") || "/links/";
 
-    const theLink = data.link;
+    const theLink = data.link as unknown as typeof regex_link.$inferSelect;
 
     return (
         <>
@@ -90,7 +91,7 @@ export default function Index() {
                 <input type="hidden" name="rxl_id" value={theLink.rxl_id} />
                 <input type="hidden" name="next" value={next} />
                 <div className="mb-3">
-                    <label htmlFor="rxl_url" className="form-label">URL</label>
+                    <label htmlFor="rxl_url" className="form-label">URL <a className="ms-2" href={theLink.rxl_url} target="_new">open<PiArrowSquareOut className="ms-1"/></a></label>
                     <input type="text" className="form-control" id="rxl_url" name="rxl_url" defaultValue={theLink.rxl_url} />
                 </div>
                 <div className="mb-3">
