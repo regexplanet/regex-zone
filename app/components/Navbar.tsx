@@ -8,9 +8,9 @@ import { AuthButton } from './AuthButton';
 const links:NavbarLinkItem[] = [
     { link: '/patterns/', label: 'Patterns', icon: <PiBlueprint />, icon_bold: <PiBlueprintBold /> },
     { link: '/links/', label: 'Links', icon: <PiLink />, icon_bold: <PiLink /> },
-    { link: '/testing/', label: 'Testing', icon: <PiPlay />, icon_bold: <PiPlayBold /> },
+//    { link: '/testing/', label: 'Testing', icon: <PiPlay />, icon_bold: <PiPlayBold /> },
     { link: '/sharing/', label: 'Sharing', icon: <PiUsersThree />, icon_bold: <PiUsersThreeBold /> },
-    { link: '/search.html', label: 'Search', icon: <PiMagnifyingGlass />, icon_bold: <PiMagnifyingGlassBold /> },
+//    { link: '/search.html', label: 'Search', icon: <PiMagnifyingGlass />, icon_bold: <PiMagnifyingGlassBold /> },
 ];
 
 export function Navbar() {
