@@ -1,24 +1,33 @@
 import React from "react";
+import { default as UnencryptedCookies } from 'js-cookie';
+import { RootLoaderData } from "~/types/RootLoaderData";
+import { useRouteLoaderData } from "@remix-run/react";
 
-function getColorScheme() {
+function getColorScheme(defaultTheme?: "light" | "dark") {
 
   if (typeof window === 'undefined') {
-    return 'light';
+    defaultTheme = defaultTheme || 'light';
+    console.log("getColorScheme: window is undefined: ", defaultTheme);
+    return defaultTheme;
   }
 
   if (document.documentElement.hasAttribute('data-bs-theme')) {
+    console.log("getColorScheme: data-bs-theme: ", document.documentElement.getAttribute('data-bs-theme'));
     return document.documentElement.getAttribute('data-bs-theme');
   }
 
   if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    console.log("getColorScheme: dark");
     return 'dark';
   } else {
+    console.log("getColorScheme: light");
     return 'light';
   }
 }
 
 export function ColorSchemeToggle() {
-  const [ currentScheme, setColorScheme ] = React.useState(getColorScheme());
+  const { theme } = useRouteLoaderData<RootLoaderData>("root") as unknown as RootLoaderData;
+  const [ currentScheme, setColorScheme ] = React.useState(getColorScheme(theme));
 
   const onClick = (scheme: 'light' | 'dark' | 'auto') => {
     if (scheme == 'auto') {
@@ -28,6 +37,8 @@ export function ColorSchemeToggle() {
         scheme = 'light';
       }
     }
+    UnencryptedCookies.set('color-theme', scheme, { path: '/' });
+    localStorage.setItem('color-theme', scheme);
     document.documentElement.setAttribute('data-bs-theme', scheme);
     setColorScheme(scheme);
   }

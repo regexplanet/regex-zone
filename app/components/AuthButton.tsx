@@ -1,9 +1,9 @@
 import { Link as RemixLink, useRouteLoaderData } from "@remix-run/react";
 import { PiUserCircle, PiUserCircleFill } from "react-icons/pi";
-import { User } from "~/types/User";
+import { RootLoaderData } from "~/types/RootLoaderData";
 
 export function AuthButton() {
-    const user = useRouteLoaderData<User|null>("root");
+    const { user } = useRouteLoaderData<RootLoaderData>("root") as unknown as RootLoaderData;
 
     let authImage:JSX.Element = <PiUserCircle title={"Not logged in"} />;
     if (user) {
