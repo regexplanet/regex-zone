@@ -4,6 +4,14 @@
 
 A collection of useful regular expressions and related resources.
 
+## Running
+
+To install the database:
+```
+npx drizzle-kit generate
+npx drizzle-kit migrate
+```
+
 ## License
 
 CC BY-SA 4.0: [Overview](https://creativecommons.org/licenses/by-sa/4.0/), [Full text](LICENSE.txt)
