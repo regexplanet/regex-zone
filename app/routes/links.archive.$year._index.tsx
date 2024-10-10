@@ -10,6 +10,7 @@ import { authenticator } from "~/services/auth.server";
 import LinksTable from "~/components/LinksTable";
 import { PiArrowFatUpBold, PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 import { MIN_ARCHIVE_YEAR } from "~/util/constants";
+import { RootLoaderData } from "~/types/RootLoaderData";
 
 export const meta: MetaFunction = ({ params }) => {
     return [
@@ -39,7 +40,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export default function Index() {
     const params = useParams();
-    const user = useRouteLoaderData<User | null>("root");
+    const { user } = useRouteLoaderData<RootLoaderData>("root") as unknown as RootLoaderData;
     const data = useLoaderData<typeof loader>();
 
     const currentYear = new Date().getFullYear();

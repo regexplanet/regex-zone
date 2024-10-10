@@ -26,7 +26,14 @@ function getColorScheme(defaultTheme?: "light" | "dark") {
 }
 
 export function ColorSchemeToggle() {
-  const { theme } = useRouteLoaderData<RootLoaderData>("root") as unknown as RootLoaderData;
+  const rootData = useRouteLoaderData<RootLoaderData>("root") as unknown as RootLoaderData;
+  const theme = rootData?.theme;
+
+  return theme ? <ColorSchemeToggleComponent theme={theme} /> : null;
+}
+
+function ColorSchemeToggleComponent({ theme }: { theme: "light" | "dark"}) {
+
   const [ currentScheme, setColorScheme ] = React.useState(getColorScheme(theme));
 
   const onClick = (scheme: 'light' | 'dark' | 'auto') => {
