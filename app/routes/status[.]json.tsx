@@ -5,14 +5,14 @@ export async function loader({
     request,
 }: LoaderFunctionArgs) {
 
-    const jsonStr = JSON.stringify({
+    const status = {
         success: true,
         message: 'OK',
         timestamp: new Date().toISOString(),
         tech: `NodeJS ${process.version}`,
         lastmod: process.env.LASTMOD || '(not set)',
         commit: process.env.COMMIT || '(not set)',
-    });
+    };
 
-    return handleJsonp(request, jsonStr);
+    return handleJsonp(request, status);
 }
