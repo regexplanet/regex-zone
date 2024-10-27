@@ -64,16 +64,18 @@ function PatternEntryVariationView(variation: PatternEntryVariation) {
         <tr>
             <td>{variation.title}</td>
             <td>
-                <code>{variation.pattern}</code>
+                <code>{variation.regex}</code>
             </td>
             <td>
                 <button
                     className="btn btn-sm btn-outline-secondary ms-2 px-1 pt-0 pb-1"
-                    onClick={() => copyToClipboard(variation.pattern)}
+                    onClick={() => copyToClipboard(variation.regex)}
                 ><PiClipboardBold title="copy to clipboard" /></button>
-                <form action="https://www.regexplanet.com/advanced/java/index.html" className="d-inline" method="post" target="_blank">
-                    <input type="hidden" name="regex" value={variation.pattern} />
-                    <input type="hidden" name="replacement" value={variation.replacement} />
+                <form action="https://www.regexplanet.com/advanced/java/index.html" className="d-inline" method="get" target="_blank">
+                    <input type="hidden" name="regex" value={variation.regex} />
+                    { variation.replacement ? <input type="hidden" name="replacement" value={variation.replacement} /> : null }
+                    { variation.options ? variation.options.map((option, index) => <input key={`option_${index}`} type="hidden" name="options" value={option} />) : null }
+                    { variation.inputs ? variation.inputs.map((input, index) => <input key={`input_${index}`} type="hidden" name="input" value={input} />) : null }
                     <button className="btn btn-sm btn-outline-secondary ms-2 px-1 pt-0 pb-1" ><PiPlayBold title="Test" /></button>
                 </form>
             </td>

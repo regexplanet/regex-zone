@@ -1,0 +1,36 @@
+featured: false
+handle: ap-dates
+title: Associated Press Date Format
+tags:
+- date
+variations:
+  - title: "AP Date (standalone)"
+    regex: '^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$'
+    inputs:
+    - "January 1, 2020"
+    - "February 29, 2020"
+    - "March 15, 2020"
+    - "April 30, 2020"
+    - "May 1, 2020"
+    - "June 15, 2020"
+    - "July 31, 2020"
+    - "August 1, 2020"
+    - "September 15, 2020"
+    - "October 31, 2020"
+    - "November 1, 2020"
+    - "December 15, 2020"
+  - title: "AP Date (inline)"
+    regex: '\b(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}\b'
+    inputs:
+    - "My birthday is on January 1, 2020."
+    - "I was born on February 29, 2020."
+    - "The Ides of March is on March 15, 2020."
+    - "April 30, 2020 is the last day of the month."
+    - "May 1, 2020 is the first day of the month."
+    - "June 15, 2020 is halfway through the month."
+    - "July 31, 2020 is the last day of the month."
+    - "August 1, 2020 is the first day of the month."
+    - "September 15, 2020 is halfway through the month."
+    - "October 31, 2020 is Halloween."
+    - "November 1, 2020 is the day after Halloween."
+    - "December 15, 2020 is halfway through the month."

@@ -1,8 +1,25 @@
 featured: true
 handle: roman-numeral
+tags:
+- numbers
 title: Roman Numerals
+inputs: &common_inputs
+- "I"
+- "i"
+- "V"
+- "v"
+- "VI"
+- "IV"
+- "IX"
+- "X"
+- "XI"
+- "XIV"
+- "XIX"
+- "XX"
 variations:
   - title: "Roman Numerals (standalone)"
-    pattern: "^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$"
+    regex: "^M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$"
+    inputs: *common_inputs
   - title: "Roman Numerals (inline)"
-    pattern: "\\bM{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\\b"
+    regex: "\\bM{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\\b"
+    inputs: *common_inputs

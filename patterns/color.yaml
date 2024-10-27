@@ -7,17 +7,19 @@ tags:
   - html
 variations:
   - title: "Hex (standalone)"
-    pattern: "^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$"
-    tests:
-      - text: "#f00"
-      - text: "#ff0000"
-      - text: "#0f0"
-      - text: "#00ff00"
-      - text: "#00f"
-      - text: "#0000ff"
-      - text: "#000"
-      - text: "#000000"
-      - text: "#fff"
-      - text: "#ffffff"
+    regex: "^(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))$"
+    inputs:
+      - "#f00"
+      - "#ff0000"
+      - "#0f0"
+      - "#00ff00"
+      - "#00f"
+      - "#0000ff"
+      - "#000"
+      - "#000000"
+      - "#fff"
+      - "#ffffff"
   - title: "Hex (inline)"
-    pattern: "\\b(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\b"
+    regex: "\\b(#([a-fA-F0-9]{6}|[a-fA-F0-9]{3}))\\b"
+    inputs:
+      - "My favorite color is #f00!"

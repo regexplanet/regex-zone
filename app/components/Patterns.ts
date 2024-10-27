@@ -14,10 +14,13 @@ export type PatternEntry = {
 };
 
 export type PatternEntryVariation = {
-  title: string;
-  pattern: string;
-  replacement?: string;
   description?: string;
+  engine?: string;
+  inputs?: string[];
+  options?: string[];
+  regex: string;
+  replacement?: string;
+  title: string;
 };
 
 const cache: Map<string, PatternEntry> = new Map();
@@ -39,7 +42,7 @@ async function initialize() {
     parsed.fullPath = fullPath;
 
     cache.set(parsed.handle, parsed);
-    //LATER: validate w/JSON schema
+    //LATER: validate w/JSON schemaxx
     all.push(parsed);
   }
 }

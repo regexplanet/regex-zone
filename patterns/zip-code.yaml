@@ -11,6 +11,10 @@ tags:
   - us
 variations:
   - title: "US Zip Code (standalone)"
-    pattern: "^((\\d{5})(-\\d{4})?)$"
+    regex: '^((\d{5})(-\d{4})?)$'
+    replacement: 'zip code is "\1"'
+    inputs:
+    - "12345"
+    - "12345-6789"
   - title: "US Zip Code (inline)"
-    pattern: "\\b((\\d{5})(-\\d{4})?)\\b"
+    regex: '\b((\d{5})(-\d{4})?)\b'
