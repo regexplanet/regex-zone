@@ -57,7 +57,8 @@ export default function Index() {
                     {user && user.isAdmin ?
                         <>
                             <RemixLink to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</RemixLink>
-                            <RemixLink to="/links/import.html" className="btn btn-primary mx-1"><AdminIcon /> Import</RemixLink>
+                            <RemixLink to="/links/import-feed.html" className="btn btn-primary mx-1"><AdminIcon /> Import RSS/Adom Feed</RemixLink>
+                            <RemixLink to="/links/import-json.html" className="btn btn-primary mx-1"><AdminIcon /> Import JSON</RemixLink>
                             <a href="/links/backup.json" className="btn btn-primary mx-1"><AdminIcon /> Backup</a>
                         </>
                         : null}

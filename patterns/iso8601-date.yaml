@@ -2,7 +2,7 @@ featured: true
 handle: iso8601-date
 title: ISO 8601 Date Format
 tags:
-- date
+- dates
 todo: "Handle millis, missing separators, etc."
 variations:
   - title: "ISO 8601 Complete"

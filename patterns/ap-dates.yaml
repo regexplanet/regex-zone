@@ -2,7 +2,7 @@ featured: false
 handle: ap-dates
 title: Associated Press Date Format
 tags:
-- date
+- dates
 variations:
   - title: "AP Date (standalone)"
     regex: '^(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$'

@@ -22,7 +22,7 @@ type PinboardEntry = {
 
 export const meta: MetaFunction = () => {
     return [
-        { title: "Import Links - Regex Zone" },
+        { title: "Import JSON Links - Regex Zone" },
         { name: "description", content: "Import JSON link dump from Pinboard.in" },
     ];
 };
@@ -112,7 +112,7 @@ export default function Import() {
         <>
             <h1 className="py-2">Import Links</h1>
             <div className="d-flex justify-content-center">
-                <Form method="post" className="border p-3" action="/links/import.html" encType="multipart/form-data">
+                <Form method="post" className="border p-3" action="/links/import-json.html" encType="multipart/form-data">
                     <div className="mb-3">
                         <label htmlFor="formFile" className="form-label">Pinboard.in Export JSON</label>
                         <input className="form-control" type="file" id="file" name="file" />

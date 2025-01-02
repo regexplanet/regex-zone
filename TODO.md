@@ -1,5 +1,9 @@
 # To Do
 
+- [ ] Redos check
+- [ ] Diagram 
+- [ ] Glossary
+- [ ] Tools page w/above
 - [ ] copy to clipboard for variations
 - [ ] patterns into database
 - [ ] search.html
@@ -15,6 +19,21 @@
 - [ ] more regex in the catalog
 - [ ] post to places besides RXP
 - [ ] 404 page
+
+## Patterns
+
+- [ ] URL: https://mathiasbynens.be/demo/url-regex
+- [ ] Semver: https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+- [ ] RFC 3339 dates: https://datatracker.ietf.org/doc/html/rfc3339
+- [ ] RFC 822 dates: https://datatracker.ietf.org/doc/html/rfc822#section-5
+- [ ] IPv4
+- [ ] IPv6
+- [ ] SWIFT
+- [ ] NANP phone number
+- [ ] USA social security numbers
+- [ ] Other national numbers
+- [ ] Other postal codes
+- [ ] 
 
 
 ## Data Model
