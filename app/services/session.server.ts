@@ -1,4 +1,4 @@
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage } from "react-router";
 import { processEnvOrThrow } from "~/util/processEnvOrThrow.server";
 
 // export the whole sessionStorage object

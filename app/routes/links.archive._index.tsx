@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, useLoaderData } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { data, Link, useLoaderData } from "react-router";
 import { dbconnection } from "~/db/connection.server";
 
 
@@ -13,7 +13,7 @@ export async function loader() {
 
     const archiveyears = await dbconnection`SELECT EXTRACT(YEAR FROM rxl_created_at) AS year, COUNT(*) as count FROM regex_link GROUP BY EXTRACT(YEAR FROM rxl_created_at) ORDER BY EXTRACT(YEAR FROM rxl_created_at) DESC`;
 
-    return json(archiveyears);
+    return data(archiveyears);
 }
 
 export default function Tags() {
@@ -24,7 +24,7 @@ export default function Tags() {
             <h1 className="py-2">Links Archive</h1>
             { archiveyears.map((archiveyear) => (
                 <div className="mb-3" key={archiveyear.year}>
-                    <RemixLink className="btn btn-primary" to={`/links/archive/${archiveyear.year}/`}>{archiveyear.year}</RemixLink> ({archiveyear.count})
+                    <Link className="btn btn-primary" to={`/links/archive/${archiveyear.year}/`}>{archiveyear.year}</Link> ({archiveyear.count})
                 </div>
             )) }
         </>

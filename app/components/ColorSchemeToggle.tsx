@@ -1,7 +1,7 @@
 import React from "react";
 import { default as UnencryptedCookies } from 'js-cookie';
 import { RootLoaderData } from "~/types/RootLoaderData";
-import { useRouteLoaderData } from "@remix-run/react";
+import { useRouteLoaderData } from "react-router";
 
 function getColorScheme(defaultTheme?: "light" | "dark") {
 

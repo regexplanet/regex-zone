@@ -1,4 +1,4 @@
-import { redirect } from "@remix-run/node";
+import { redirect } from "react-router";
 import { authenticator } from "~/services/auth.server";
 
 export async function adminOnlyLoader({ request }: { request: Request }) {

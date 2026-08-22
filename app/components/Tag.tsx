@@ -1,4 +1,4 @@
-import { Link as RemixLink } from "@remix-run/react";
+import { Link } from "react-router";
 
 type TagProps = {
     tag: string,
@@ -8,7 +8,7 @@ type TagProps = {
 
 export function Tag({ tag, onClick, url }: TagProps) {
     return (
-        <RemixLink
+        <Link
             key={tag}
             to={url}
             onClick={onClick}
@@ -16,6 +16,6 @@ export function Tag({ tag, onClick, url }: TagProps) {
             className="badge text-bg-primary text-decoration-none me-2"
         >
             {tag.replaceAll('-', ' ')}
-        </RemixLink>
+        </Link>
     );
 }

@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, useLoaderData, useRouteLoaderData } from "@remix-run/react";
+import type { LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, useLoaderData, useRouteLoaderData } from "react-router";
 import { desc } from "drizzle-orm";
 
 import { cookieStorage } from "~/services/session.server";
@@ -30,7 +30,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const links = await dborm.select().from(regex_link).orderBy(desc(regex_link.rxl_created_at)).limit(100);
 
     // Commit the session and return the message
-    return json(
+    return data(
         { links, message },
         {
             headers: {
@@ -52,13 +52,13 @@ export default function Index() {
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="py-2">Links</h1>
                 <div>
-                    <RemixLink to="/links/tags.html" className="btn btn-primary mx-1">Tags</RemixLink>
-                    <RemixLink to="/links/archive/" className="btn btn-primary mx-1">Archive</RemixLink>
+                    <Link to="/links/tags.html" className="btn btn-primary mx-1">Tags</Link>
+                    <Link to="/links/archive/" className="btn btn-primary mx-1">Archive</Link>
                     {user && user.isAdmin ?
                         <>
-                            <RemixLink to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</RemixLink>
-                            <RemixLink to="/links/import-feed.html" className="btn btn-primary mx-1"><AdminIcon /> Import RSS/Adom Feed</RemixLink>
-                            <RemixLink to="/links/import-json.html" className="btn btn-primary mx-1"><AdminIcon /> Import JSON</RemixLink>
+                            <Link to="/links/add.html" className="btn btn-primary mx-1"><AdminIcon /> Add</Link>
+                            <Link to="/links/import-feed.html" className="btn btn-primary mx-1"><AdminIcon /> Import RSS/Adom Feed</Link>
+                            <Link to="/links/import-json.html" className="btn btn-primary mx-1"><AdminIcon /> Import JSON</Link>
                             <a href="/links/backup.json" className="btn btn-primary mx-1"><AdminIcon /> Backup</a>
                         </>
                         : null}
@@ -66,7 +66,7 @@ export default function Index() {
             </div>
             {message ? <AlertWidget alert={message} /> : null}
             <LinksTable currentUrl="/links/" links={links} isAdmin={user?.isAdmin}  />
-            <RemixLink to="/links/archive/" className="btn btn-primary">Archive</RemixLink>
+            <Link to="/links/archive/" className="btn btn-primary">Archive</Link>
         </>
     );
 }

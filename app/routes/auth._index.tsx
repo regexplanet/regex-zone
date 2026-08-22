@@ -1,5 +1,5 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 import { authenticator } from "~/services/auth.server";
 import { cookieStorage } from "~/services/session.server";
 import { User } from "~/types/User";
@@ -20,9 +20,14 @@ function LoginSection() {
     return (
         <>
             <p>You are not logged in!</p>
-            <form action="/auth/github" method="post">
-                <button type="submit" className="btn btn-primary">Login with Github</button>
-            </form>
+            <div className="d-flex gap-2">
+                <form action="/auth/github" method="post">
+                    <button type="submit" className="btn btn-primary">Log in with GitHub</button>
+                </form>
+                <form action="/auth/gitlab" method="post">
+                    <button type="submit" className="btn btn-primary">Log in with GitLab</button>
+                </form>
+            </div>
         </>
     )
 }

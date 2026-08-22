@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, useLoaderData, useParams, useRouteLoaderData } from "@remix-run/react";
+import type { LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, useLoaderData, useParams, useRouteLoaderData } from "react-router";
 import { desc, sql } from "drizzle-orm";
 
 import { User } from "~/types/User";
@@ -33,7 +33,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 
     // Commit the session and return the message
-    return json(
+    return data(
         { links, user },
     );
 }
@@ -53,9 +53,9 @@ export default function Index() {
             <div className="d-flex justify-content-between align-items-center">
                 <h1 className="py-2">Links Archive for {year}</h1>
                 <div>
-                    {year > MIN_ARCHIVE_YEAR ? <RemixLink to={`/links/archive/${year - 1}/`} className="btn btn-primary mx-1"><PiCaretLeftBold /> {year - 1}</RemixLink> : null}
-                    <RemixLink to="/links/archive/" className="btn btn-primary"><PiArrowFatUpBold /></RemixLink>
-                    {year < currentYear ? <RemixLink to={`/links/archive/${year + 1}/`} className="btn btn-primary mx-1">{year + 1} <PiCaretRightBold /></RemixLink> : null}
+                    {year > MIN_ARCHIVE_YEAR ? <Link to={`/links/archive/${year - 1}/`} className="btn btn-primary mx-1"><PiCaretLeftBold /> {year - 1}</Link> : null}
+                    <Link to="/links/archive/" className="btn btn-primary"><PiArrowFatUpBold /></Link>
+                    {year < currentYear ? <Link to={`/links/archive/${year + 1}/`} className="btn btn-primary mx-1">{year + 1} <PiCaretRightBold /></Link> : null}
                 </div>
             </div>
             {links.length == 0

@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, redirect, useLoaderData, useSearchParams } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, redirect, useLoaderData, useSearchParams } from "react-router";
 import { eq } from "drizzle-orm"
 
 import { dborm } from "~/db/connection.server";
@@ -21,7 +21,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
         //LATER: flash error
         return redirect("/links/");
     }
-    
+
     const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
@@ -35,7 +35,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
 
     // Commit the session and return the message
-    return json(
+    return data(
         { link: links[0], user },
     );
 }
@@ -93,7 +93,7 @@ export default function Index() {
                     <input type="text" className="form-control" id="rxl_tags" name="rxl_tags" defaultValue={theLink.rxl_tags.join(' ')} disabled readOnly />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Delete" />
-                <RemixLink className="btn btn-outline-primary mx-2" to={next}>Cancel</RemixLink>
+                <Link className="btn btn-outline-primary mx-2" to={next}>Cancel</Link>
             </form>
         </>
     );

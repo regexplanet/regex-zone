@@ -1,6 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Link as RemixLink, useLoaderData, useRouteLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/node";
+import type { MetaFunction } from "react-router";
+import { data, Link, useLoaderData, useRouteLoaderData } from "react-router";
 import { desc, arrayContains } from "drizzle-orm";
 
 import { getAll, initialize, PatternEntry } from "~/components/Patterns";
@@ -20,7 +19,7 @@ export const loader = async () => {
 		.orderBy(desc(regex_link.rxl_created_at))
 		.limit(100);
 
-	return json({
+	return data({
 		patterns: getAll(),
 		links,
 	});
@@ -37,7 +36,7 @@ function PatternEntryRow(entry: PatternEntry) {
 	return (
 		<tr key={entry.handle}>
 			<td>
-				<RemixLink to={`${entry.handle}/`}>{entry.title}</RemixLink>
+				<Link to={`/patterns/${entry.handle}/`}>{entry.title}</Link>
 			</td>
 			<td style={{ 'textAlign': 'right' }}>
 				{entry.tags ? <TagList tags={entry.tags} urlBuilder={PatternTagUrlBuilder} /> : null}

@@ -1,12 +1,10 @@
 import {
-    ActionFunctionArgs, 
-    LoaderFunctionArgs, 
+    ActionFunctionArgs,
+    LoaderFunctionArgs,
     MetaFunction,
     redirect,
-    unstable_createMemoryUploadHandler,
-    unstable_parseMultipartFormData,
-} from "@remix-run/node";
-import { Form } from "@remix-run/react";
+} from "react-router";
+import { Form } from "react-router";
 import { eq } from "drizzle-orm";
 
 import { authenticator } from "~/services/auth.server";
@@ -39,12 +37,7 @@ export const action = async ({
         throw new Response("Unauthorized", { status: 401 });
     }
 
-    const formData = await unstable_parseMultipartFormData(
-        request,
-        unstable_createMemoryUploadHandler({
-            maxPartSize: 50_000_000,
-        })
-    );
+    const formData = await request.formData();
 
     const formDataValue = formData.get("file");
     if (!formDataValue) {
@@ -96,7 +89,7 @@ export function loader(args: LoaderFunctionArgs) {
     return adminOnlyLoader(args);
 }
 
-import type { ShouldRevalidateFunction } from "@remix-run/react";
+import type { ShouldRevalidateFunction } from "react-router";
 import { cookieStorage } from "~/services/session.server";
 import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";

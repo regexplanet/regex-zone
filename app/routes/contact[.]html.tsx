@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { useLocation } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { useLocation } from "react-router";
 
 export const meta: MetaFunction = () => {
     return [

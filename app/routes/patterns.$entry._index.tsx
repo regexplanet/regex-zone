@@ -1,8 +1,8 @@
-//import type { MetaFunction } from "@remix-run/node";
-//import { json } from "@remix-run/node";
-import { json, type MetaFunction, LoaderFunctionArgs } from "@remix-run/node";
-//import type { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+//import type { MetaFunction } from "react-router";
+//import { data } from "react-router";
+import { data, type MetaFunction, LoaderFunctionArgs } from "react-router";
+//import type { LoaderFunctionArgs } from "react-router";
+import { useLoaderData } from "react-router";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { PiClipboardBold, PiPlayBold } from "react-icons/pi";
 import Markdown from 'react-markdown'
@@ -15,7 +15,7 @@ export const loader = async ({
     params,
 }: LoaderFunctionArgs) => {
     await initialize();
-    return json(get(params["entry"] || ""));
+    return data(get(params["entry"] || ""));
 };
 
 

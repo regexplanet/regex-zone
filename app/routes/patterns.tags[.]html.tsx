@@ -1,5 +1,5 @@
-import { json, type MetaFunction } from "@remix-run/node";
-import { useLoaderData, useSearchParams } from "@remix-run/react";
+import { data, type MetaFunction } from "react-router";
+import { useLoaderData, useSearchParams } from "react-router";
 
 import { getAll, initialize } from "~/components/Patterns";
 import { type TagTreeEntry, TagTree } from "~/components/TagTree";
@@ -22,7 +22,7 @@ export const loader = async () => {
             }
         }
     }
-    return json(tagMap);
+    return data(tagMap);
 };
 
 

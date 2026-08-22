@@ -15,7 +15,7 @@ docker build \
 # exit 0
 
 docker run \
-	--env PORT='4000' \
+	--env-file=./.env \
 	--expose 4000 \
 	--publish 4000:4000 \
 	regex-zone

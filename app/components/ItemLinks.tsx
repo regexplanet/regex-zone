@@ -1,4 +1,4 @@
-import { Link as RemixLink } from "@remix-run/react";
+import { Link } from "react-router";
 import { AdminIcon } from "./AdminIcon";
 
 type ItemType = "pattern" | "link";
@@ -8,7 +8,7 @@ type ItemTypeInfo = {
     column_prefix: string;
 };
 
-const itemTypeMap: Record<ItemType, ItemTypeInfo> = 
+const itemTypeMap: Record<ItemType, ItemTypeInfo> =
 {
     "pattern": {
         baseUrl: "/patterns/",
@@ -32,8 +32,8 @@ export function ItemLinks({ currentUrl, id, type, adminOnly }: ItemLinksProps) {
     const currentUrlParam = currentUrl ? `&next=${encodeURIComponent(currentUrl)}` : "";
     return (
         <>
-            <RemixLink to={`${typeInfo.baseUrl}edit.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{ adminOnly ? <AdminIcon /> : null } Edit</RemixLink>
-            <RemixLink to={`${typeInfo.baseUrl}delete.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{adminOnly ? <AdminIcon /> : null} Delete</RemixLink>
+			<Link to={`${typeInfo.baseUrl}edit.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{ adminOnly ? <AdminIcon /> : null } Edit</Link>
+			<Link to={`${typeInfo.baseUrl}delete.html?${typeInfo.column_prefix}id=${id}${currentUrlParam}`} className="btn btn-sm btn-secondary mx-1">{adminOnly ? <AdminIcon /> : null} Delete</Link>
         </>
     );
 }

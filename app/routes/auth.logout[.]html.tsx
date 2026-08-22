@@ -1,7 +1,5 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { Link as RemixLink, useLoaderData } from "@remix-run/react";
-import { cookieStorage } from "~/services/session.server";
-import { authenticator } from "~/services/auth.server";
+import { ActionFunctionArgs, Link, LoaderFunctionArgs, redirect, useLoaderData } from "react-router";
+import { cookieStorage, destroySession } from "~/services/session.server";
 
 type AlertMessage = {
   alert: string;
@@ -20,22 +18,12 @@ export async function loader({request}: LoaderFunctionArgs): Promise<AlertMessag
 
 export async function action({ request }: ActionFunctionArgs) {
 
-  // don't pass request.headers.get("cookie") here
-  let session = await cookieStorage.getSession(request.headers.get("Cookie"));
-
-  const user = session.get("user");
-  session = await cookieStorage.getSession();   // create empty session for flash msg
-  let message:AlertMessage;
-  if (user) {
-    message = { alert: "success", text: "You have been logged out" };
-  } else {
-    message = { alert: "error", text: "You were not logged in"};
-  }
-  session.flash("logout", message);
-
-  await authenticator.logout(request, {
-    redirectTo: "/auth/logout.html",
-    headers: { "Set-Cookie": await cookieStorage.commitSession(session) },
+  return redirect("/auth/logout.html", {
+    headers: {
+      "Set-Cookie": await destroySession(
+        await cookieStorage.getSession(request.headers.get("Cookie"))
+      ),
+    },
   });
 }
 
@@ -49,7 +37,7 @@ export default function AuthLogout() {
       <h1 className="py-2">Logout</h1>
       <p>{message.text}</p>
       <p>
-        <RemixLink className="btn btn-primary mx-2" to="/">Home</RemixLink>
+        <Link className="btn btn-primary mx-2" to="/">Home</Link>
       </p>
     </>
   );

@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, redirect } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, redirect } from "react-router";
 
 import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";
@@ -21,7 +21,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
 
     // Commit the session and return the message
-    return json(
+    return data(
         { user },
     );
 }
@@ -58,7 +58,7 @@ export default function Index() {
                     <input type="text" className="form-control" id="rxl_tags" name="rxl_tags" defaultValue="" />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Save" />
-                <RemixLink className="btn btn-outline-primary mx-2" to="/links/">Cancel</RemixLink>
+                <Link className="btn btn-outline-primary mx-2" to="/links/">Cancel</Link>
             </form>
         </>
     );

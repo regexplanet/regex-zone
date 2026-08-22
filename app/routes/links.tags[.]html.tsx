@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, useLoaderData, useSearchParams } from "@remix-run/react";
+import type { LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, useLoaderData, useSearchParams } from "react-router";
 import { dbconnection } from "~/db/connection.server";
 import { TagTree, TagTreeEntry } from "~/components/TagTree";
 import { authenticator } from "~/services/auth.server";
@@ -25,14 +25,14 @@ export async function loader({ request }: LoaderFunctionArgs) {
             links = [];
             tagmap[tag] = links;
         }
-        links.push({ 
-            id: taglink.rxl_id, 
-            title: taglink.rxl_title, 
-            url: user?.isAdmin ? `/links/edit.html?rxl_id=${encodeURIComponent(taglink.rxl_id)}` : taglink.rxl_url 
+        links.push({
+            id: taglink.rxl_id,
+            title: taglink.rxl_title,
+            url: user?.isAdmin ? `/links/edit.html?rxl_id=${encodeURIComponent(taglink.rxl_id)}` : taglink.rxl_url
         });
     }
 
-    return json(tagmap);
+    return data(tagmap);
 }
 
 export default function Tags() {
@@ -47,7 +47,7 @@ export default function Tags() {
             <div className="mt-3">
                 {Object.entries(tagMap).length} tags
             </div>
-            <RemixLink to="/links/untagged.html" className="btn btn-primary mt-3">Untagged</RemixLink>
+            <Link to="/links/untagged.html" className="btn btn-primary mt-3">Untagged</Link>
         </>
     );
 

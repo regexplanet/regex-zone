@@ -3,5 +3,6 @@
 .DS_Store
 .env
 node_modules
+.react-router
 tmp*
 *.tmp

@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "react-router";
 import { eq } from "drizzle-orm";
 
 import { dborm } from "~/db/connection.server";

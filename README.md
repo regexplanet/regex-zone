@@ -56,8 +56,14 @@ LATER
 [![PostgreSQL](https://www.vectorlogo.zone/logos/postgresql/postgresql-ar21.svg)](https://www.postgresql.org/ "Database")
 [![Postgres.js](https://www.vectorlogo.zone/logos/github_postgresjs/github_postgresjs-ar21.svg)](https://github.com/porsager/postgres "Database driver")
 [![react.js](https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg)](https://reactjs.org/ "UI Framework")
-[![Remix](https://www.vectorlogo.zone/logos/remixrun/remixrun-ar21.svg)](https://remix.run/ "React Framework")
+[React Router](https://reactrouter.com/ "React Framework")
 [![SVGR](https://www.vectorlogo.zone/logos/react-svgr/react-svgr-ar21.svg)](https://react-svgr.com/ "SVG conversion")
 [![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-ar21.svg)](https://www.typescriptlang.org/ "Programming Language")
 [![Vite](https://www.vectorlogo.zone/logos/vitejsdev/vitejsdev-ar21.svg)](https://vitejs.dev/ "Bundler")
+
+## Authentication
+
+Configure GitHub and GitLab OAuth applications with `GITHUB_CLIENT_ID`,
+`GITHUB_CLIENT_SECRET`, `GITLAB_CLIENT_ID`, and `GITLAB_CLIENT_SECRET`. Register
+`/auth/github/callback` and `/auth/gitlab/callback` with each provider.
 

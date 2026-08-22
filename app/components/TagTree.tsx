@@ -1,5 +1,5 @@
-import { SerializeFrom } from "@remix-run/node";
-import { Link as RemixLink } from "@remix-run/react";
+import { SerializeFrom } from "react-router";
+import { Link } from "react-router";
 
 import { Tag } from "./Tag";
 
@@ -28,7 +28,7 @@ function TagTreeRow(tag: string, currentTag: string, entries: SerializeFrom<TagT
             <ul className="mt-1">
                 {entries?.map((entry) => (
                     <li key={entry.url}>
-                        <RemixLink to={entry.url}>{entry.title}</RemixLink>
+                        <Link to={entry.url}>{entry.title}</Link>
                     </li>
                 ))}
             </ul>

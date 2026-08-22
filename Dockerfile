@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7-labs
-FROM node:20-bookworm AS base
+FROM node:24-bookworm AS base
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ RUN npm install --audit=false --fund=false
 RUN npm run build
 
 
-FROM gcr.io/distroless/nodejs20-debian12:latest AS runner
+FROM gcr.io/distroless/nodejs24-debian12:latest AS runner
 
 ARG COMMIT="(not set)"
 ARG LASTMOD="(not set)"

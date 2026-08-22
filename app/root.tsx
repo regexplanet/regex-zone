@@ -6,10 +6,10 @@ import {
   Scripts,
   ScrollRestoration,
   useRouteError,
-} from "@remix-run/react";
+} from "react-router";
 import { Navbar } from "~/components/Navbar";
 import { Footer } from "~/components/Footer";
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { LoaderFunctionArgs } from "react-router";
 
 import { authenticator } from "~/services/auth.server";
 import { RootLoaderData } from "./types/RootLoaderData";

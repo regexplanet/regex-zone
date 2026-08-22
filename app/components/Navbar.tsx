@@ -1,5 +1,5 @@
 import { PiBlueprint, PiBlueprintBold, PiLink, PiMagnifyingGlass, PiMagnifyingGlassBold, PiPlay, PiPlayBold, PiUsersThree, PiUsersThreeBold } from 'react-icons/pi';
-import { Link as RemixLink } from "@remix-run/react";
+import { Link } from "react-router";
 
 import RegexZoneSvg from './RegexZoneSvg';
 import { NavbarLink, NavbarLinkItem } from './NavbarLink';
@@ -21,10 +21,10 @@ export function Navbar() {
         <>
             <nav className="navbar navbar-expand bg-body-tertiary border-bottom">
                 <div className="container-lg d-flex">
-                    <RemixLink className="navbar-brand fs-4 fw-bold flex-grow-1" to="/">
+                    <Link className="navbar-brand fs-4 fw-bold flex-grow-1" to="/">
                         <RegexZoneSvg height={'2rem'} className="pe-2 d-none d-md-inline" />
                         Regex Zone
-                    </RemixLink>
+                    </Link>
                     <ul className="navbar-nav mt-1">
                     {items}
                     </ul>

@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json } from "@remix-run/react";
+import type { LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data } from "react-router";
 import { sql } from "drizzle-orm"
 
 import { cookieStorage } from "~/services/session.server";
@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 
     // Commit the session and return the message
-    return json(
+    return data(
         { links, user },
         {
             headers: {
@@ -32,4 +32,4 @@ export async function loader({ request }: LoaderFunctionArgs) {
     );
 }
 
-export default Index; 
+export default Index;

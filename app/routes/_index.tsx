@@ -1,5 +1,5 @@
-import type { MetaFunction } from "@remix-run/node";
-import { isRouteErrorResponse, Link as RemixLink, Links, Meta, Scripts, useRouteError, useLoaderData, json } from "@remix-run/react";
+import type { MetaFunction } from "react-router";
+import { data, isRouteErrorResponse, Link, Links, Meta, Scripts, useRouteError, useLoaderData } from "react-router";
 import { desc } from "drizzle-orm";
 
 import { Navbar } from "~/components/Navbar";
@@ -17,7 +17,7 @@ export const meta: MetaFunction = () => {
 
 export async function loader() {
   const links = await dborm.select().from(regex_link).orderBy(desc(regex_link.rxl_created_at)).limit(8);
-  return json( { links } );
+  return data( { links } );
 }
 
 export default function Index() {
@@ -30,11 +30,11 @@ export default function Index() {
         <h1 className="py-2">
           Welcome to the Regex Zone
         </h1>
-        <div className="pb-3">Check out the collection of useful <RemixLink to="/patterns/">Regular Expression Patterns</RemixLink>!</div>
+        <div className="pb-3">Check out the collection of useful <Link to="/patterns/">Regular Expression Patterns</Link>!</div>
         <hr />
         <h2>Recent Links</h2>
         <LinksTable currentUrl="/" links={links} isAdmin={false} />
-        <RemixLink to="/links/" className="btn btn-sm btn-primary">More Links...</RemixLink>
+        <Link to="/links/" className="btn btn-sm btn-primary">More Links...</Link>
     </>
   );
 }

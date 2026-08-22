@@ -1,4 +1,4 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs } from "react-router";
 import { desc } from "drizzle-orm";
 import Haikunator from "haikunator";
 
@@ -16,7 +16,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-    
+
     const user = await authenticator.isAuthenticated(request);
 
     const formData = await request.formData();
@@ -38,9 +38,9 @@ export async function action({ request }: ActionFunctionArgs) {
         rxs_options: (formData.getAll("options") as string[]) || [],
     });
 
-    return handleJsonp(request, { 
-        success: true, 
+    return handleJsonp(request, {
+        success: true,
         message: `Regex saved with share code: ${share_code}`,
-        share: share_code 
+        share: share_code
     });
 }

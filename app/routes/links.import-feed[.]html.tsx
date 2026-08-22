@@ -3,8 +3,7 @@ import {
     LoaderFunctionArgs,
     MetaFunction,
     redirect,
-} from "@remix-run/node";
-import { Form, useLoaderData } from "@remix-run/react";
+ Form, useLoaderData } from "react-router";
 import { eq } from "drizzle-orm";
 import { parseFeed } from "@rowanmanning/feed-parser";
 
@@ -108,7 +107,7 @@ export function loader(args: LoaderFunctionArgs) {
     }
 }
 
-import type { ShouldRevalidateFunction } from "@remix-run/react";
+import type { ShouldRevalidateFunction } from "react-router";
 import { cookieStorage } from "~/services/session.server";
 import { dborm } from "~/db/connection.server";
 import { regex_link } from "~/db/schema";

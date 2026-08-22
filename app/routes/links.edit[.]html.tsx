@@ -1,5 +1,5 @@
-import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
-import { json, Link as RemixLink, redirect, useLoaderData, useSearchParams } from "@remix-run/react";
+import type { ActionFunctionArgs, LoaderFunctionArgs, MetaFunction } from "react-router";
+import { data, Link, redirect, useLoaderData, useSearchParams } from "react-router";
 import { eq } from "drizzle-orm"
 import { PiArrowSquareOut } from "react-icons/pi";
 
@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
         //LATER: flash error
         return redirect("/links/");
     }
-    
+
     const links = await dborm.select().from(regex_link).where(eq(regex_link.rxl_id, rxl_id));
     if (!links || links.length != 1) {
         //LATER: flash error
@@ -36,7 +36,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }
 
     // Commit the session and return the message
-    return json(
+    return data(
         { link: links[0], user },
     );
 }
@@ -64,7 +64,7 @@ export async function action({ request }: ActionFunctionArgs) {
         return redirect(next);
     }
 
-    const tags = getFormString(formData.get("rxl_tags")).split(' ').map(tag => tag.trim()).filter(tag => tag != "");  
+    const tags = getFormString(formData.get("rxl_tags")).split(' ').map(tag => tag.trim()).filter(tag => tag != "");
 
     await dborm.update(regex_link).set({
         rxl_url: getFormString(formData.get("rxl_url")),
@@ -111,7 +111,7 @@ export default function Index() {
                     <input type="text" className="form-control" id="rxl_updated" defaultValue={theLink.rxl_updated_at.toString().replace('T', ' ')} disabled readOnly />
                 </div>
                 <input type="submit" className="btn btn-primary" value="Save" />
-                <RemixLink className="btn btn-outline-primary mx-2" to={next}>Cancel</RemixLink>
+                <Link className="btn btn-outline-primary mx-2" to={next}>Cancel</Link>
             </form>
         </>
     );
