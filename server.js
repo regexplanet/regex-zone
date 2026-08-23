@@ -45,7 +45,7 @@ app.use(morgan("tiny"));
 // handle SSR requests
 app.all("*", reactRouterHandler);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 app.listen(port, () =>
-  console.log(`Express server listening at http://localhost:${port}`)
+  console.log(`Express server listening  on port ${port}`)
 );
