@@ -38,6 +38,7 @@ export default function AuthLogout() {
       <p>{message.text}</p>
       <p>
         <Link className="btn btn-primary mx-2" to="/">Home</Link>
+        <Link className="btn btn-primary mx-2" to="/auth/">Login again</Link>
       </p>
     </>
   );

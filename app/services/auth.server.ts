@@ -181,15 +181,20 @@ const authenticator = {
       });
     }
 
+	const id = `${provider}:${profile.id}`;
+	const adminList = process.env.ADMINS?.split(",") ?? [];
+	const isAdmin = adminList.includes(id);
+
     session.unset(stateKey);
     session.set("user", {
       avatar: profile.avatar,
       displayName: profile.name ?? profile.username ?? profile.email,
       email: profile.email,
-      id: `${provider}:${profile.id}`,
-      isAdmin: process.env.IS_ADMIN === "true",
+      id,
+      isAdmin,
       provider,
       providerName: config.name,
+	  providerId: profile.id,
     } satisfies User);
 
     return session;
