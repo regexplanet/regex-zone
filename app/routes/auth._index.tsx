@@ -35,9 +35,30 @@ function LoginSection() {
 function LogoutSection({ user }: { user: User }) {
     return (
         <>
-            <p>You are logged in as <span className="border rounded bg-body-tertiary text-body-secondary p-2">{user.displayName} ({user.providerName}@{user.provider})</span></p>
-            <p>Your email is <span className="border rounded bg-body-tertiary text-body-secondary p-2">{user.email}</span></p>
-            <p>Your profile image is <img className="px-2" src={user.avatar} alt={user.displayName} style={{"height":"2em"}} /></p>
+            <div class="mb-3 col-lg-5">
+				<label>Logged in via</label>
+				<div className="border rounded bg-body-tertiary text-body-secondary p-2">{user.providerName}</div>
+			</div>
+            <div class="mb-3 col-lg-5">
+				<label>Name</label>
+				<div className="border rounded bg-body-tertiary text-body-secondary p-2">{user.displayName}</div>
+			</div>
+            <div class="mb-3 col-lg-5">
+				<label>Email</label>
+				<div className="border rounded bg-body-tertiary text-body-secondary p-2">{user.email}</div>
+			</div>
+            {user.isAdmin && (
+	            <div class="mb-3">
+					<label className="mt-3 d-flex align-items-center gap-2">
+						<input type="checkbox" checked readOnly />
+						Admin
+					</label>
+				</div>
+            )}
+            <div class="mb-3 d-flex flex-column">
+				<label>Avatar image</label>
+				<div className="align-self-start border rounded bg-body-tertiary text-body-secondary p-4"><img className="px-2" src={user.avatar} alt={user.displayName} style={{"height":"4em"}} /></div>
+			</div>
             <form action="/auth/logout.html" method="post">
                 <input type="submit" className="btn btn-primary" value="Logout" />
             </form>
