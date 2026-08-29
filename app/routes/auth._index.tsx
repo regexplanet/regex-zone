@@ -11,24 +11,21 @@ export async function loader({ request }: LoaderFunctionArgs) {
         user: authUser,
         sessionUser,
         authUser,
+        providers: authenticator.providers,
         session: (await cookieStorage.getSession(request.headers.get("Cookie")))
     };
 }
 
-function LoginSection() {
+function LoginSection({ providers }: { providers: typeof authenticator.providers }) {
     return (
         <>
             <p>You are not logged in!</p>
             <div className="d-flex gap-2">
-                <form action="/auth/github" method="post">
-                    <button type="submit" className="btn btn-primary">Log in with GitHub</button>
-                </form>
-                <form action="/auth/gitlab" method="post">
-                    <button type="submit" className="btn btn-primary">Log in with GitLab</button>
-                </form>
-				<form action="/auth/hello" method="post">
-					<button type="submit" className="btn btn-primary">Log in with Hello</button>
-				</form>
+                {providers.filter((provider) => provider.isEnabled).map((provider) => (
+                    <form action={`/auth/${provider.id}`} method="post" key={provider.id}>
+                        <button type="submit" className="btn btn-primary">Log in with {provider.name}</button>
+                    </form>
+                ))}
             </div>
         </>
     )
@@ -74,7 +71,7 @@ export default function AuthIndex() {
     return (
         <>
             <h1 className="py-2">Authentication</h1>
-            { data.user ? <LogoutSection user={data.user} /> : <LoginSection/> }
+            { data.user ? <LogoutSection user={data.user} /> : <LoginSection providers={data.providers} /> }
             <details className="pt-3">
                 <summary>Raw Auth User Data</summary>
                 <pre>{JSON.stringify(data.user, null, 4)}</pre>

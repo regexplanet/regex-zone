@@ -8,8 +8,9 @@ type OAuthProvider = "github" | "gitlab" | "hello";
 
 type ProviderConfig = {
   authorizationUrl: string;
-  clientId: string;
-  clientSecret: string;
+  clientId?: string;
+  clientSecret?: string;
+  isEnabled: boolean;
   name: string;
   profileFn: (accessToken: string) => Promise<ProviderProfile>;
   scopes: string[];
@@ -27,8 +28,9 @@ type ProviderProfile = {
 const providers: Record<OAuthProvider, ProviderConfig> = {
 	github: {
 		authorizationUrl: "https://github.com/login/oauth/authorize",
-		clientId: processEnvOrThrow("GITHUB_CLIENT_ID"),
-		clientSecret: processEnvOrThrow("GITHUB_CLIENT_SECRET"),
+    clientId: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    isEnabled: Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET),
 		name: "GitHub",
 		profileFn: getGithubProfile,
 		scopes: ["read:user", "user:email"],
@@ -36,8 +38,9 @@ const providers: Record<OAuthProvider, ProviderConfig> = {
 	},
 	gitlab: {
 		authorizationUrl: "https://gitlab.com/oauth/authorize",
-		clientId: processEnvOrThrow("GITLAB_CLIENT_ID"),
-		clientSecret: processEnvOrThrow("GITLAB_CLIENT_SECRET"),
+    clientId: process.env.GITLAB_CLIENT_ID,
+    clientSecret: process.env.GITLAB_CLIENT_SECRET,
+    isEnabled: Boolean(process.env.GITLAB_CLIENT_ID && process.env.GITLAB_CLIENT_SECRET),
 		name: "GitLab",
 		profileFn: getGitLabProfile,
 		scopes: ["read_user"],
@@ -45,8 +48,9 @@ const providers: Record<OAuthProvider, ProviderConfig> = {
 	},
 	hello: {
 		authorizationUrl: "https://wallet.hello.coop/authorize",
-		clientId: processEnvOrThrow("HELLO_CLIENT_ID"),
-		clientSecret: processEnvOrThrow("HELLO_CLIENT_SECRET"),
+    clientId: process.env.HELLO_CLIENT_ID,
+    clientSecret: process.env.HELLO_CLIENT_SECRET,
+    isEnabled: Boolean(process.env.HELLO_CLIENT_ID && process.env.HELLO_CLIENT_SECRET),
 		name: "Hello.coop",
 		profileFn: getHelloProfile,
 		scopes: ["openid", "profile", "nickname"],
@@ -156,12 +160,21 @@ const authenticator = {
     return (session.get("user") as User | undefined) ?? null;
   },
 
+  providers: Object.entries(providers).map(([id, config]) => ({
+    id,
+    isEnabled: config.isEnabled,
+    name: config.name,
+  })),
+
   async beginAuthentication(request: Request, provider: string) {
     if (!isProvider(provider)) {
       throw new Response("Unsupported OAuth provider", { status: 404 });
     }
 
     const config = providers[provider];
+    if (!config.isEnabled || !config.clientId || !config.clientSecret) {
+      throw new Response("Unsupported OAuth provider", { status: 404 });
+    }
     const state = randomUUID();
     const session = await cookieStorage.getSession(request.headers.get("Cookie"));
     session.set(`oauth_state:${provider}`, state);
@@ -194,6 +207,9 @@ const authenticator = {
     }
 
     const config = providers[provider];
+    if (!config.isEnabled || !config.clientId || !config.clientSecret) {
+      throw new Response("Unsupported OAuth provider", { status: 404 });
+    }
     const tokenResponse = await fetch(config.tokenUrl, {
       method: "POST",
       headers: { Accept: "application/json" },
