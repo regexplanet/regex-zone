@@ -1,5 +1,4 @@
-import { LoaderFunctionArgs } from "react-router";
-import { useLoaderData } from "react-router";
+import { LoaderFunctionArgs, useLoaderData } from "react-router";
 import { authenticator } from "~/services/auth.server";
 import { cookieStorage } from "~/services/session.server";
 import { User } from "~/types/User";
@@ -27,6 +26,9 @@ function LoginSection() {
                 <form action="/auth/gitlab" method="post">
                     <button type="submit" className="btn btn-primary">Log in with GitLab</button>
                 </form>
+				<form action="/auth/hello" method="post">
+					<button type="submit" className="btn btn-primary">Log in with Hello</button>
+				</form>
             </div>
         </>
     )

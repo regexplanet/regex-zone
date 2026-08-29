@@ -4,13 +4,14 @@ import { cookieStorage } from "~/services/session.server";
 import { User } from "~/types/User";
 import { processEnvOrThrow } from "~/util/processEnvOrThrow.server";
 
-type OAuthProvider = "github" | "gitlab";
+type OAuthProvider = "github" | "gitlab" | "hello";
 
 type ProviderConfig = {
   authorizationUrl: string;
   clientId: string;
   clientSecret: string;
   name: string;
+  profileFn: (accessToken: string) => Promise<ProviderProfile>;
   scopes: string[];
   tokenUrl: string;
 };
@@ -24,22 +25,33 @@ type ProviderProfile = {
 };
 
 const providers: Record<OAuthProvider, ProviderConfig> = {
-  github: {
-    authorizationUrl: "https://github.com/login/oauth/authorize",
-    clientId: processEnvOrThrow("GITHUB_CLIENT_ID"),
-    clientSecret: processEnvOrThrow("GITHUB_CLIENT_SECRET"),
-    name: "GitHub",
-    scopes: ["read:user", "user:email"],
-    tokenUrl: "https://github.com/login/oauth/access_token",
-  },
-  gitlab: {
-    authorizationUrl: "https://gitlab.com/oauth/authorize",
-    clientId: processEnvOrThrow("GITLAB_CLIENT_ID"),
-    clientSecret: processEnvOrThrow("GITLAB_CLIENT_SECRET"),
-    name: "GitLab",
-    scopes: ["read_user"],
-    tokenUrl: "https://gitlab.com/oauth/token",
-  },
+	github: {
+		authorizationUrl: "https://github.com/login/oauth/authorize",
+		clientId: processEnvOrThrow("GITHUB_CLIENT_ID"),
+		clientSecret: processEnvOrThrow("GITHUB_CLIENT_SECRET"),
+		name: "GitHub",
+		profileFn: getGithubProfile,
+		scopes: ["read:user", "user:email"],
+		tokenUrl: "https://github.com/login/oauth/access_token",
+	},
+	gitlab: {
+		authorizationUrl: "https://gitlab.com/oauth/authorize",
+		clientId: processEnvOrThrow("GITLAB_CLIENT_ID"),
+		clientSecret: processEnvOrThrow("GITLAB_CLIENT_SECRET"),
+		name: "GitLab",
+		profileFn: getGitLabProfile,
+		scopes: ["read_user"],
+		tokenUrl: "https://gitlab.com/oauth/token",
+	},
+	hello: {
+		authorizationUrl: "https://wallet.hello.coop/authorize",
+		clientId: processEnvOrThrow("HELLO_CLIENT_ID"),
+		clientSecret: processEnvOrThrow("HELLO_CLIENT_SECRET"),
+		name: "Hello.coop",
+		profileFn: getHelloProfile,
+		scopes: ["openid", "profile", "nickname"],
+		tokenUrl: "https://wallet.hello.coop/oauth/token",
+	},
 };
 
 function isProvider(value: string): value is OAuthProvider {
@@ -65,27 +77,47 @@ async function fetchJson<T>(url: string, accessToken: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-async function getProfile(
-  provider: OAuthProvider,
+async function getGitLabProfile(accessToken: string): Promise<ProviderProfile> {
+  const profile = await fetchJson<{
+    avatar_url?: string;
+    email?: string;
+    id: number;
+    name?: string;
+    username?: string;
+  }>("https://gitlab.com/api/v4/user", accessToken);
+  return {
+    avatar: profile.avatar_url,
+    email: profile.email,
+    id: profile.id,
+    name: profile.name,
+    username: profile.username,
+  };
+}
+
+async function getHelloProfile(accessToken: string): Promise<ProviderProfile> {
+  const profile = await fetchJson<{
+    picture?: string;
+    email?: string;
+    sub: string;
+    name?: string;
+	nickname?: string;
+    username?: string;
+  }>("https://wallet.hello.coop/oauth/userinfo", accessToken);
+
+  console.log(profile);
+
+  return {
+    avatar: profile.picture,
+    email: profile.email,
+    id: profile.sub,
+    name: profile.name,
+    username: profile.nickname ?? profile.name,
+  };
+}
+
+async function getGithubProfile(
   accessToken: string
 ): Promise<ProviderProfile> {
-  if (provider === "gitlab") {
-    const profile = await fetchJson<{
-      avatar_url?: string;
-      email?: string;
-      id: number;
-      name?: string;
-      username?: string;
-    }>("https://gitlab.com/api/v4/user", accessToken);
-    return {
-      avatar: profile.avatar_url,
-      email: profile.email,
-      id: profile.id,
-      name: profile.name,
-      username: profile.username,
-    };
-  }
-
   const profile = await fetchJson<{
     avatar_url?: string;
     email?: string;
@@ -111,6 +143,11 @@ async function getProfile(
     name: profile.name,
     username: profile.login,
   };
+}
+
+async function getProfile(provider: OAuthProvider, accessToken: string): Promise<ProviderProfile> {
+  const config = providers[provider];
+  return config.profileFn(accessToken);
 }
 
 const authenticator = {
